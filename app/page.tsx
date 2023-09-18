@@ -1,5 +1,6 @@
 import { ItemList } from '@/components/ItemList'
 import { Badge } from '@/components/ui/badge'
+import { H1, H2, H3 } from '@/components/ui/typography'
 import { getDataFromSheet } from '@/lib/sheets'
 import { camelCase } from 'lodash'
 
@@ -12,13 +13,13 @@ export default async function Home() {
   const primaryAttributes = meta.filter(it => ['number', 'range', 'text'].includes(it.type) && it.inPreview === 'yes')
   const secondaryAttributes = meta.filter(it => ['number', 'range', 'text'].includes(it.type) && it.inPreview === 'no')
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <h3 className="text-right text-slate-400 text-sm font-extrabold font-['Ruda']">A {info.author}&apos;s list</h3>
-      <h1 className="text-slate-400 text-2xl font-normal font-['Alfa Slab One'] leading-snug">
-        {info.title}</h1>
-      <h2 className="text-slate-400 text-sm font-normal font-['Ruda'] leading-snug">
+    <main className="flex min-h-screen flex-col items-center justify-between p-24 bg-background">
+      <H3>A {info.author}&apos;s list</H3>
+      <H1>
+        {info.title}</H1>
+      <H2>
         {info.description}
-      </h2>
+      </H2>
 
       {
         items?.map((item: Record<string, string>) => <ItemList key={item.name} title={item.name} description={item.description} footer={item.categories.split(',').map(tag => <Badge key={tag}>{tag}</Badge>)}>
