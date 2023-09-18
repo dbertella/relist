@@ -13,7 +13,7 @@ export default async function Home() {
   const secondaryAttributes = meta.filter(it => ['number', 'range'].includes(it.type) && !it.preview)
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <h3>A {info.author}'s list</h3>
+      <h3>A {info.author}&apos;s list</h3>
       <h1>
         {info.title}</h1>
       <h2>
