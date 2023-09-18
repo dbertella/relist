@@ -9,8 +9,8 @@ export default async function Home() {
   const [info] = await getDataFromSheet(SHEET_ID, 'info')
   const meta = await getDataFromSheet(SHEET_ID, info.sheetForListSetup)
   const items = await getDataFromSheet(SHEET_ID, info.sheetForListData)
-  const primaryAttributes = meta.filter(it => ['number', 'range'].includes(it.type) && it.preview)
-  const secondaryAttributes = meta.filter(it => ['number', 'range'].includes(it.type) && !it.preview)
+  const primaryAttributes = meta.filter(it => ['number', 'range', 'text'].includes(it.type) && it.preview)
+  const secondaryAttributes = meta.filter(it => ['number', 'range', 'text'].includes(it.type) && !it.preview)
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <h3>A {info.author}&apos;s list</h3>
