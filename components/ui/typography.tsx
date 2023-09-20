@@ -4,7 +4,7 @@ type Props = { children: ReactNode }
 
 export function H1({ children }: Props) {
     return (
-        <h1 className="text-2xl font-normal leading-snug first:mt-0">
+        <h1 className="mb-2.5 text-2xl">
             {children}
         </h1>
     )
@@ -12,7 +12,7 @@ export function H1({ children }: Props) {
 
 export function H2({ children }: Props) {
     return (
-        <h2 className="text-sm font-normal leading-snug first:mt-0">
+        <h2 className="text-sm">
             {children}
         </h2>
     )
@@ -20,7 +20,7 @@ export function H2({ children }: Props) {
 
 export function H3({ children }: Props) {
     return (
-        <h3 className="text-sm font-semibold leading-snug first:mt-0">
+        <h3 className="mb-2.5 text-sm">
             {children}
         </h3>
     )

@@ -3,6 +3,7 @@ import { Badge } from '@/components/ui/badge'
 import { H1, H2, H3 } from '@/components/ui/typography'
 import { getDataFromSheet } from '@/lib/sheets'
 import { camelCase } from 'lodash'
+import { Card } from '../components/ui/card'
 
 const SHEET_ID = '1ZyDFUqVNyhiN7I-E2AKytdwv_NrNY6K1Ch-zkFwytCs'
 
@@ -13,19 +14,26 @@ export default async function Home() {
   const primaryAttributes = meta.filter(it => ['number', 'range', 'text'].includes(it.type) && it.inPreview === 'yes')
   const secondaryAttributes = meta.filter(it => ['number', 'range', 'text'].includes(it.type) && it.inPreview === 'no')
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24 bg-background">
-      <H3>A {info.author}&apos;s list</H3>
-      <H1>
-        {info.title}</H1>
-      <H2>
-        {info.description}
-      </H2>
+    <main className="max-w-3xl m-auto">
+      <Card className="p-2 border-none">
+        <H3 className="">A {info.author}&apos;s list</H3>
+        <H1 className="">
+          {info.title}</H1>
+        <H2 className="">
+          {info.description}
+        </H2>
+      </Card>
+
+      <menu className="m-4 justify-between items-start flex text-white">
+        <span className="flex flex-1 flex-col items-center">FILTER</span><span className="flex flex-1 flex-col items-center">SORT</span><span className="flex flex-1 flex-col items-center">DETAILS</span><span className="flex flex-1 flex-col items-center">FAV</span>
+      </menu>
+
 
       {
         items?.map((item: Record<string, string>) => <ItemList key={item.name} title={item.name} description={item.description} footer={item.categories.split(',').map(tag => <Badge key={tag}>{tag}</Badge>)}>
 
-          <div className="h-14 px-7 py-2 justify-between items-start inline-flex">
-            {primaryAttributes.map(attr => <div key={attr.title} className="flex flex-1 flex-col items-center text-violet-300 text-base font-extrabold font-[' Ruda']" ><span>{attr.title}</span><span>{item[camelCase(attr.title)]}</span></div>)}
+          <div className="justify-between items-start flex">
+            {primaryAttributes.map(attr => <div key={attr.title} className="flex flex-1 flex-col items-center text-base" ><span>{attr.title}</span><span>{item[camelCase(attr.title)]}</span></div>)}
           </div>
           {secondaryAttributes.map(attr => <div key={attr.title}><span>{attr.title}</span>: <span>{item[camelCase(attr.title)]}</span></div>)}
 
