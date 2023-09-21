@@ -45,7 +45,7 @@ export default async function Home() {
           <div className="h-52 pl-4 justify-end items-center inline-flex">
 
             {
-              item.imageLinks?.split('\n')?.map((url: string) => <img
+              item.imageLinks?.split('\n')?.filter(Boolean).map((url: string) => <img
                 key={url}
                 src={url.trim()}
                 width="300"
