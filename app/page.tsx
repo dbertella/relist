@@ -4,15 +4,19 @@ import { H1, H2, H3 } from '@/components/ui/typography'
 import { getDataFromSheet } from '@/lib/sheets'
 import { camelCase } from 'lodash'
 import { Card } from '../components/ui/card'
+import { Attribute, AttributeItem, PrimaryAttribute } from '@/components/Attributes'
 
 const SHEET_ID = '1ZyDFUqVNyhiN7I-E2AKytdwv_NrNY6K1Ch-zkFwytCs'
 
 export default async function Home() {
   const [info] = await getDataFromSheet(SHEET_ID, 'info')
-  const meta = await getDataFromSheet(SHEET_ID, info.sheetForListSetup)
+  const meta = await getDataFromSheet(SHEET_ID, info.sheetForListSetup) as AttributeItem[]
   const items = await getDataFromSheet(SHEET_ID, info.sheetForListData)
-  const primaryAttributes = meta.filter(it => ['number', 'range', 'text'].includes(it.type) && it.inPreview === 'yes')
-  const secondaryAttributes = meta.filter(it => ['number', 'range', 'text'].includes(it.type) && it.inPreview === 'no')
+  const primaryAttributes = meta.filter(it => ['number', 'range'].includes(it.type) && it.inPreview === 'yes')
+  const secondaryAttributes = meta.filter(it => ['number', 'range'].includes(it.type) && it.inPreview === 'no')
+  const textAttributes = meta.filter(it => ['text'].includes(it.type))
+  const paraghrapf = meta.filter(it => ['paragraph'].includes(it.type))
+  console.log({ meta })
   return (
     <main className="max-w-3xl m-auto">
       <Card className="p-2 border-none">
@@ -33,9 +37,11 @@ export default async function Home() {
         items?.map((item: Record<string, string>) => <ItemList key={item.name} title={item.name} description={item.description} footer={item.categories.split(',').map(tag => <Badge key={tag}>{tag}</Badge>)}>
 
           <div className="justify-between items-start flex">
-            {primaryAttributes.map(attr => <div key={attr.title} className="flex flex-1 flex-col items-center text-base" ><span>{attr.title}</span><span>{item[camelCase(attr.title)]}</span></div>)}
+            {primaryAttributes.map((attr: AttributeItem) => <PrimaryAttribute key={attr.title} className="flex flex-1 flex-col items-center text-base" {...attr} value={item[camelCase(attr.title)]} />)}
           </div>
-          {secondaryAttributes.map(attr => <div key={attr.title}><span>{attr.title}</span>: <span>{item[camelCase(attr.title)]}</span></div>)}
+          {secondaryAttributes.map(attr => <p className="mb-2" key={attr.title}><Attribute {...attr} value={item[camelCase(attr.title)]} /></p>)}
+          {textAttributes.map(attr => <p className="mb-2" key={attr.title}><Attribute {...attr} value={item[camelCase(attr.title)]} /></p>)}
+          {paraghrapf.map(attr => <p className="mb-2" key={attr.title}>{item[camelCase(attr.title)]}</p>)}
 
           <div className="h-52 pl-4 justify-end items-center inline-flex">
 
