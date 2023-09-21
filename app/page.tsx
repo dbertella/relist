@@ -16,10 +16,10 @@ export default async function Home() {
   return (
     <main className="max-w-3xl m-auto">
       <Card className="p-2 border-none">
-        <H3 className="">A {info.author}&apos;s list</H3>
-        <H1 className="">
+        <H3>A {info.author}&apos;s list</H3>
+        <H1>
           {info.title}</H1>
-        <H2 className="">
+        <H2>
           {info.description}
         </H2>
       </Card>
