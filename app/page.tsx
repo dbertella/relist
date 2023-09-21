@@ -16,7 +16,6 @@ export default async function Home() {
   const secondaryAttributes = meta.filter(it => ['number', 'range'].includes(it.type) && it.inPreview === 'no')
   const textAttributes = meta.filter(it => ['text'].includes(it.type))
   const paraghrapf = meta.filter(it => ['paragraph'].includes(it.type))
-  console.log({ meta })
   return (
     <main className="max-w-3xl m-auto">
       <Card className="p-2 border-none">
