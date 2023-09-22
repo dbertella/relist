@@ -4,7 +4,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 
 type Props = {
     title: ReactNode,
-    description: ReactNode,
+    description?: ReactNode,
     children: ReactNode,
     footer: ReactNode
 }
@@ -12,7 +12,7 @@ export const ItemList = ({ title, description, children, footer }: Props) => {
     return <Card>
         <CardHeader>
             <CardTitle>{title}</CardTitle>
-            <CardDescription>{description}</CardDescription>
+            {description && <CardDescription>{description}</CardDescription>}
         </CardHeader>
         <CardContent>
             {children}
