@@ -47,7 +47,7 @@ export default async function Home() {
           <div className="h-50 inline-flex overflow-x-scroll no-scrollbar scrolling-touch scroll-smooth">
 
             {
-              item.imageLinks?.split('\n')?.map((url: string) => <img
+              item.imageLinks?.split('\n')?.filter(Boolean).map((url: string) => <img
                 key={url}
                 src={url.trim()}
                 className="h-48 rounded mr-4"
