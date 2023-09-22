@@ -8,7 +8,7 @@
     --foreground: 226, 31%, 64%;
 
     --card: 218, 50%, 11%;
-    --innercard: 216, 50%, 11%;
+    --innercard: rgba(145, 155, 207, 0.06);
     --card-foreground: 233, 82%, 85%;
 
     --popover: 222, 49%, 19%;
@@ -17,13 +17,13 @@
     --primary: 218, 50%, 11%;
     --primary-foreground: 233, 82%, 85%;
 
-    --secondary: 132, 6%, 15%;
+    --secondary: rgba(240, 187, 0, 0.1);
     --secondary-foreground: 47, 100%, 47%;
 
     --muted: 216, 59%, 6%;
     --muted-foreground: 0 0% 100%;
 
-    --accent: 187, 42%, 22%;
+    --accent: rgba(85, 243, 206, 0.2);
     --accent-foreground: 166, 87%, 64%;
 
     --destructive: 0 62.8% 30.6%;
@@ -78,3 +78,18 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer utilities {
+    @variants responsive {
+      /* Hide scrollbar for Chrome, Safari and Opera */
+      .no-scrollbar::-webkit-scrollbar {
+          display: none;
+      }
+
+      /* Hide scrollbar for IE, Edge and Firefox */
+      .no-scrollbar {
+          -ms-overflow-style: none;  /* IE and Edge */
+          scrollbar-width: none;  /* Firefox */
+      }
+    }
+  }

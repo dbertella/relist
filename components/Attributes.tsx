@@ -21,7 +21,7 @@ export const Attribute = ({
     unit,
 }: AttributeItem) => (
     <>
-        <span>{rename || title}</span><span className="mx-2">{value}{showMax === 'yes' && ` / ${max}`} {unit}</span>
+        <span className="mb-1.5 text-foreground text-sm">{rename || title}</span><span className="mx-2 text-card-foreground text-sm">{value}{showMax === 'yes' && ` / ${max}`} {unit}</span>
     </>
 )
 
