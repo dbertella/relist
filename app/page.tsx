@@ -5,10 +5,10 @@ import { getDataFromSheet } from '@/lib/sheets'
 import { camelCase } from 'lodash'
 import { Card } from '../components/ui/card'
 import { Attribute, AttributeItem, PrimaryAttribute } from '@/components/Attributes'
-import { ScrollArea } from "@/components/ui/scroll-area"
-
 
 const SHEET_ID = '1ZyDFUqVNyhiN7I-E2AKytdwv_NrNY6K1Ch-zkFwytCs'
+
+export const dynamic = 'force-dynamic'
 
 export default async function Home() {
   const [info] = await getDataFromSheet(SHEET_ID, 'info')
