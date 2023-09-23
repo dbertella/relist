@@ -4,7 +4,7 @@ import { H1, H2, H3 } from '@/components/ui/typography'
 import { getDataFromSheet } from '@/lib/sheets'
 import { camelCase } from 'lodash'
 import { Card } from '../components/ui/card'
-import { Attribute, AttributeItem, PrimaryAttribute } from '@/components/Attributes'
+import { Attribute, AttributeItem, OtherAttribute, PrimaryAttribute } from '@/components/Attributes'
 
 const SHEET_ID = '1ZyDFUqVNyhiN7I-E2AKytdwv_NrNY6K1Ch-zkFwytCs'
 
@@ -40,9 +40,9 @@ export default async function Home() {
           <div className="justify-between flex-wrap items-start flex p-4 mb-4 rounded-lg bg-innercard">
             {primaryAttributes.map((attr: AttributeItem) => <PrimaryAttribute key={attr.title} className="max-w-max flex flex-1 flex-col items-center text-base" {...attr} value={item[camelCase(attr.title)]} />)}
           </div>
-          {secondaryAttributes.map(attr => <p className="mb-4 text-sm" key={attr.title}><Attribute {...attr} value={item[camelCase(attr.title)]} /></p>)}
-          {textAttributes.map(attr => <p className="mb-4 text-sm" key={attr.title}><Attribute {...attr} value={item[camelCase(attr.title)]} /></p>)}
-          {paraghrapf.map(attr => <p className="mb-4 text-sm" key={attr.title}>{item[camelCase(attr.title)]}</p>)}
+          {secondaryAttributes.map(attr => <OtherAttribute className="mb-4 text-sm" key={attr.title} {...attr} value={item[camelCase(attr.title)]} />)}
+          {textAttributes.map(attr => <OtherAttribute className="mb-4 text-sm" key={attr.title} {...attr} value={item[camelCase(attr.title)]} />)}
+          {paraghrapf.map(attr => <OtherAttribute className="mb-4 text-sm" key={attr.title}  {...attr} value={item[camelCase(attr.title)]} hideTitle />)}
 
           <div className="h-50 inline-flex overflow-x-scroll no-scrollbar scrolling-touch scroll-smooth">
 
