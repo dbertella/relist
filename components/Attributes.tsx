@@ -11,6 +11,8 @@ export type AttributeItem = {
     size: string,
     inPreview: 'yes' | 'no'
     value: string
+    className?: string
+
 }
 export const Attribute = ({
     title,
@@ -19,10 +21,18 @@ export const Attribute = ({
     max,
     showMax,
     unit,
-}: AttributeItem) => (
+    hideTitle
+}: AttributeItem & { hideTitle?: boolean }) => (
     <>
-        <span className="mb-1.5 text-foreground text-sm">{rename || title}</span><span className="mx-2 text-card-foreground text-sm">{value}{showMax === 'yes' && ` / ${max}`} {unit}</span>
+        {!hideTitle && <span className="mb-1.5 text-foreground text-sm">{rename || title}</span>}<span className="mx-2 text-card-foreground text-sm">{value}{showMax === 'yes' && ` / ${max}`} {unit}</span>
     </>
+
 )
 
-export const PrimaryAttribute = ({ className, ...props }: AttributeItem & { className: string }) => <div key={props.title} className={cn("flex flex-1 flex-col items-center text-base", className)}><Attribute {...props} /></div>
+export const PrimaryAttribute = ({ className, ...props }: AttributeItem) => props.value && <div key={props.title} className={cn("flex flex-1 flex-col items-center text-base", className)}><Attribute {...props} /></div>
+
+export const OtherAttribute = ({ className, ...props }: AttributeItem & { hideTitle?: boolean }) => (
+    props.value && <div className={className}>
+        <Attribute {...props} />
+    </div>
+)
