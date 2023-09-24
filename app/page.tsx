@@ -14,10 +14,10 @@ export default async function Home() {
   const [info] = await getDataFromSheet(SHEET_ID, 'info')
   const meta = await getDataFromSheet(SHEET_ID, info.sheetForListSetup) as AttributeItem[]
   const items = await getDataFromSheet(SHEET_ID, info.sheetForListData)
-  const primaryAttributes = meta.filter(it => ['number', 'range'].includes(it.type) && it.inPreview === 'yes')
-  const secondaryAttributes = meta.filter(it => ['number', 'range'].includes(it.type) && it.inPreview === 'no')
-  const textAttributes = meta.filter(it => ['text'].includes(it.type))
-  const paraghrapf = meta.filter(it => ['paragraph'].includes(it.type))
+  const primaryAttributes = meta.filter(it => ['number', 'range'].includes(it.type) && it.inPreview === 'yes') ?? []
+  const secondaryAttributes = meta.filter(it => ['number', 'range'].includes(it.type) && it.inPreview === 'no') ?? []
+  const textAttributes = meta.filter(it => ['text'].includes(it.type)) ?? []
+  const paraghrapf = meta.filter(it => ['paragraph'].includes(it.type)) ?? []
   return (
     <main className="max-w-3xl m-auto">
       <Card className="p-2 border-none rounded-none bg-background">
@@ -35,7 +35,7 @@ export default async function Home() {
 
 
       {
-        items?.map((item: Record<string, string>) => <ItemList key={item.name} title={item.name} footer={item.categories.split(',').map(tag => <Badge key={tag}>{tag}</Badge>)}>
+        items?.map((item: Record<string, string>) => <ItemList key={item.name} title={item.name} footer={item.categories?.split(',')?.map(tag => <Badge key={tag}>{tag}</Badge>)}>
 
           <div className="justify-between flex-wrap items-start flex p-4 mb-4 rounded-lg bg-innercard">
             {primaryAttributes.map((attr: AttributeItem) => <PrimaryAttribute key={attr.title} className="max-w-max flex flex-1 flex-col items-center text-base" {...attr} value={item[camelCase(attr.title)]} />)}
