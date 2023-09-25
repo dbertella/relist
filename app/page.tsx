@@ -4,7 +4,7 @@ import { H1, H2, H3 } from '@/components/ui/typography'
 import { getDataFromSheet } from '@/lib/sheets'
 import { camelCase } from 'lodash'
 import { Card } from '../components/ui/card'
-import { Attribute, AttributeItem, OtherAttribute, PrimaryAttribute } from '@/components/Attributes'
+import { AttributeItem, OtherAttribute, PrimaryAttribute } from '@/components/Attributes'
 
 const SHEET_ID = '1ZyDFUqVNyhiN7I-E2AKytdwv_NrNY6K1Ch-zkFwytCs'
 
@@ -17,7 +17,7 @@ export default async function Home() {
   const primaryAttributes = meta.filter(it => ['number', 'range'].includes(it.type) && it.inPreview === 'yes') ?? []
   const secondaryAttributes = meta.filter(it => ['number', 'range'].includes(it.type) && it.inPreview === 'no') ?? []
   const textAttributes = meta.filter(it => ['text'].includes(it.type)) ?? []
-  const paraghrapf = meta.filter(it => ['paragraph'].includes(it.type)) ?? []
+  const paraghraph = meta.filter(it => ['paragraph'].includes(it.type)) ?? []
   return (
     <main className="max-w-3xl m-auto">
       <Card className="p-2 border-none rounded-none bg-background">
@@ -37,24 +37,23 @@ export default async function Home() {
       {
         items?.map((item: Record<string, string>) => <ItemList key={item.name} title={item.name} footer={item.categories?.split(',')?.map(tag => <Badge key={tag}>{tag}</Badge>)}>
 
-          <div className="justify-between flex-wrap items-start flex p-4 mb-4 rounded-lg bg-innercard">
+          {primaryAttributes.length > 0 && <div className="justify-between flex-wrap items-start flex p-4 mb-4 rounded-lg bg-innercard">
             {primaryAttributes.map((attr: AttributeItem) => <PrimaryAttribute key={attr.title} className="max-w-max flex flex-1 flex-col items-center text-base" {...attr} value={item[camelCase(attr.title)]} />)}
-          </div>
+          </div>}
           {secondaryAttributes.map(attr => <OtherAttribute className="mb-4 text-sm" key={attr.title} {...attr} value={item[camelCase(attr.title)]} />)}
           {textAttributes.map(attr => <OtherAttribute className="mb-4 text-sm" key={attr.title} {...attr} value={item[camelCase(attr.title)]} />)}
-          {paraghrapf.map(attr => <OtherAttribute className="mb-4 text-sm" key={attr.title}  {...attr} value={item[camelCase(attr.title)]} hideTitle />)}
+          {paraghraph.map(attr => <OtherAttribute className="mb-4 text-sm" key={attr.title}  {...attr} value={item[camelCase(attr.title)]} hideTitle />)}
 
-          <div className="h-50 inline-flex overflow-x-scroll no-scrollbar scrolling-touch scroll-smooth">
-
+          {item.imageLinks && <div className="h-50 inline-flex overflow-x-scroll no-scrollbar scrolling-touch scroll-smooth">
             {
-              item.imageLinks?.split('\n')?.filter(Boolean).map((url: string) => <img
+              item.imageLinks.split('\n').filter(Boolean).map((url: string) => <img
                 key={url}
                 src={url.trim()}
                 className="h-48 rounded mr-4"
                 alt=""
               />)
             }
-          </div>
+          </div>}
         </ItemList >)
       }
     </main >
