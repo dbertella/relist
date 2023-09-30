@@ -65,6 +65,6 @@ export default async function Home() {
           </div>}
         </ItemList >)
       }
-    </main >
+    </main>
   )
 }
