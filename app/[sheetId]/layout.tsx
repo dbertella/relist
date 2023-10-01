@@ -4,6 +4,7 @@ import { getDataFromSheet } from "@/lib/sheets"
 import { Toggle } from "@/components/ui/toggle"
 import Link from "next/link"
 import { PageProps } from "./type"
+import { NavBar } from "./NavBar"
 
 export default async function PageLayout({
   params,
@@ -24,12 +25,7 @@ export default async function PageLayout({
         </H2>
       </Card>
 
-      <menu className="m-4 justify-between items-start flex text-white">
-        <Link href={`/${params.sheetId}/filter`}>FILTER</Link>
-        <Link href={`/${params.sheetId}/sort`}>SORT</Link>
-        <Toggle>DETAILS</Toggle>
-        <Toggle>FAV</Toggle>
-      </menu>
+      <NavBar />
       {children}
     </main>
   )

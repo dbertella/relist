@@ -32,7 +32,7 @@
     --popover-foreground: 233, 82%, 85%;
 
     --primary: 218, 50%, 11%;
-    --primary-foreground: 233, 82%, 85%;
+    --primary-foreground: 47, 100%, 47%;
 
     --secondary: rgba(240, 187, 0, 0.1);
     --secondary-foreground: 47, 100%, 47%;
@@ -52,6 +52,7 @@
 
     --radius: 0.625rem;
 
+    --card-shadow: 0 0 0 1px rgba(198, 204, 248, 0.18);
   }
 
   .dark {
@@ -96,16 +97,19 @@
 
 
 @layer utilities {
-    @variants responsive {
-      /* Hide scrollbar for Chrome, Safari and Opera */
-      .no-scrollbar::-webkit-scrollbar {
-          display: none;
-      }
+  @variants responsive {
 
-      /* Hide scrollbar for IE, Edge and Firefox */
-      .no-scrollbar {
-          -ms-overflow-style: none;  /* IE and Edge */
-          scrollbar-width: none;  /* Firefox */
-      }
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* Hide scrollbar for IE, Edge and Firefox */
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      /* IE and Edge */
+      scrollbar-width: none;
+      /* Firefox */
     }
   }
+}
