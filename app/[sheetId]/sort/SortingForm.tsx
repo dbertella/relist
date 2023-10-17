@@ -19,10 +19,12 @@ export function SortingForm({ attributes }: Props) {
     const { params, searchParams, query, router, pathname, createQueryString } = useQueryString()
     return (
         <>
-            <Link href={{
-                pathname: `/${params.sheetId}`,
-                query: query
-            }} className="text-primary-foreground">Close</Link>
+            <div className="grid justify-items-end">
+                <Link href={{
+                    pathname: `/${params.sheetId}`,
+                    query: query
+                }} className="text-primary-foreground align-self-right">Close</Link>
+            </div>
 
             <RadioGroup
                 onValueChange={(value) => router.replace(pathname + '?' + createQueryString('orderBy', value))}
