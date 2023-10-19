@@ -6,6 +6,7 @@ import { camelCase } from 'lodash'
 import { AttributeItem, OtherAttribute, PrimaryAttribute } from '@/components/Attributes'
 import { useSearchParams } from 'next/navigation'
 import { orderBy } from 'lodash'
+import { SEPARATOR } from '@/lib/constants'
 
 type Props = {
     items: Record<string, string>[]
@@ -16,7 +17,7 @@ type Props = {
 }
 
 export default function List({
-    items,
+    items: rawItems,
     primaryAttributes,
     secondaryAttributes,
     textAttributes,
@@ -27,6 +28,44 @@ export default function List({
     const attribute = searchParams.get('orderBy') ?? undefined
     const sort = searchParams.get('sort') as "asc" | "desc" ?? 'asc'
 
+    const filterBy = [
+        ...primaryAttributes,
+        ...secondaryAttributes
+    ]
+
+
+    type Filter = Record<string, Record<'min' | 'max', string>>
+    const filters = filterBy.reduce((acc, it) => {
+        const filterValue = searchParams.get(it.title)
+        if (filterValue) {
+            const [min, max] = filterValue.split(SEPARATOR)
+            acc[it.title] = { min, max }
+        }
+        return acc
+    }, {} as Filter)
+
+
+    const items = rawItems.filter(
+        item => {
+            if (item.type === 'number') {
+                return Object.entries(filters).every(
+                    ([key, value]) =>
+                        Number(item[key]) >= Number(value.min) &&
+                        Number(item[key]) <= Number(value.max)
+                )
+            }
+            if (item.type === 'range') {
+                return Object.entries(filters).every(
+                    ([key, value]) => {
+                        const { min, max } = item[key].split(',').map(el => el.trim())
+                        Number(min) >= Number(value.min) &&
+                            Number(max) <= Number(value.max)
+                    }
+                )
+            }
+        }
+
+    )
     return (
         <>
             {

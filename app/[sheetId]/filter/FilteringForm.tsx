@@ -4,6 +4,8 @@ import { AttributeItem } from "@/components/Attributes"
 import Link from "next/link"
 import { useQueryString } from "@/lib/utils"
 import { Slider } from "@/components/ui/slider"
+import { SEPARATOR } from "@/lib/constants"
+
 
 type ParsedAttribute = Omit<AttributeItem, 'min' | 'max'> & Record<'min' | 'max', number>
 type Props = {
@@ -34,7 +36,7 @@ export function FilteringForm({ numbers = [], ranges = [], texts = [] }: Props) 
                     max={attribute.max}
                     defaultValue={searchParams.get(attribute.title)?.split(',').map(it => Number(it)) || [attribute.min, attribute.max]}
                     step={1}
-                    onValueChange={(value) => router.replace(pathname + '?' + createQueryString(attribute.title, value.join(',')))}
+                    onValueChange={(value) => router.replace(pathname + '?' + createQueryString(attribute.title, value.join(SEPARATOR)))}
                 />
             </div>)}
         </>
