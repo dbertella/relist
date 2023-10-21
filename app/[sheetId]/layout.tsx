@@ -1,10 +1,8 @@
 import { Card } from "@/components/ui/card"
 import { H1, H2, H3 } from "@/components/ui/typography"
-import { getDataFromSheet } from "@/lib/sheets"
-import { Toggle } from "@/components/ui/toggle"
-import Link from "next/link"
 import { PageProps } from "./type"
 import { NavBar } from "./NavBar"
+import { getRelistData } from "@/lib/relistData"
 
 export default async function PageLayout({
   params,
@@ -12,7 +10,7 @@ export default async function PageLayout({
 }: {
   children: React.ReactNode
 } & PageProps) {
-  const [info] = await getDataFromSheet(params.sheetId, 'info')
+  const { info } = await getRelistData(params.sheetId)
 
   return (
     <main className="max-w-3xl m-auto">

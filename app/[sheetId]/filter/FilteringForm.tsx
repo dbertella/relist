@@ -5,18 +5,17 @@ import Link from "next/link"
 import { useQueryString } from "@/lib/utils"
 import { Slider } from "@/components/ui/slider"
 import { SEPARATOR } from "@/lib/constants"
+import { camelCase } from "lodash"
 
 
-type ParsedAttribute = Omit<AttributeItem, 'min' | 'max'> & Record<'min' | 'max', number>
 type Props = {
-    numbers: ParsedAttribute[]
-    ranges: ParsedAttribute[]
-    texts: ParsedAttribute[]
+    numbers: AttributeItem[]
+    ranges: AttributeItem[]
+    texts: AttributeItem[]
 }
 
 export function FilteringForm({ numbers = [], ranges = [], texts = [] }: Props) {
     const { params, searchParams, query, router, pathname, createQueryString } = useQueryString()
-    const defaultValues = searchParams
     return (
         <>
             <div className="grid justify-items-end">
@@ -36,7 +35,7 @@ export function FilteringForm({ numbers = [], ranges = [], texts = [] }: Props) 
                     max={attribute.max}
                     defaultValue={searchParams.get(attribute.title)?.split(',').map(it => Number(it)) || [attribute.min, attribute.max]}
                     step={1}
-                    onValueChange={(value) => router.replace(pathname + '?' + createQueryString(attribute.title, value.join(SEPARATOR)))}
+                    onValueChange={(value) => router.replace(pathname + '?' + createQueryString(camelCase(attribute.title), value.join(SEPARATOR)))}
                 />
             </div>)}
         </>
