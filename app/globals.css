@@ -36,6 +36,9 @@
     --radius: 0.625rem;
 
     --card-shadow : 0 0 0 1px rgba(198, 204, 248, 0.18);
+
+    --salmon: rgba(255, 148, 124, 0.1);
+    --salmon-bg: rgba(255, 148, 124, 0.15);
   }
 
   .dark {

@@ -19,11 +19,12 @@ export default async function Home() {
   const textAttributes = meta.filter(it => ['text'].includes(it.type)) ?? []
   const paraghraph = meta.filter(it => ['paragraph'].includes(it.type)) ?? []
   return (
-    <main className="max-w-3xl m-auto">
+    <main className="max-w-md m-auto px-2">
       <Card className="p-2 border-none rounded-none bg-background">
-        <H3>A {info.author}&apos;s list</H3>
         <H1>
-          {info.title}</H1>
+          {info.title}
+        </H1>
+        <H3>A {info.author}&apos;s list</H3>
         <H2>
           {info.description}
         </H2>
@@ -37,13 +38,14 @@ export default async function Home() {
       {
         items?.map((item: Record<string, string>) => <ItemList key={item.name} title={item.name} footer={item.categories?.split(',')?.map(tag => <Badge key={tag}>{tag}</Badge>)}>
 
-          {primaryAttributes.length > 0 && <div className="justify-between flex-wrap items-start flex p-4 mb-4 rounded-lg bg-innercard">
-            {primaryAttributes.map((attr: AttributeItem) => <PrimaryAttribute key={attr.title} className="max-w-max flex flex-1 flex-col items-center text-base" {...attr} value={item[camelCase(attr.title)]} />)}
+
+          {primaryAttributes.length > 0 && <div className="flex justify-between flex-wrap items-start p-4 mb-4 rounded-lg bg-innercard">
+              {primaryAttributes.map((attr: AttributeItem) => <div className="flex flex-1 flex-col items-center text-base"> <PrimaryAttribute key={attr.title} className="text-base" {...attr} value={item[camelCase(attr.title)]} /> </div>)}
           </div>}
+
           {secondaryAttributes.map(attr => <OtherAttribute className="mb-4 text-sm" key={attr.title} {...attr} value={item[camelCase(attr.title)]} />)}
           {textAttributes.map(attr => <OtherAttribute className="mb-4 text-sm" key={attr.title} {...attr} value={item[camelCase(attr.title)]} />)}
           {paraghraph.map(attr => <OtherAttribute className="mb-4 text-sm" key={attr.title}  {...attr} value={item[camelCase(attr.title)]} hideTitle />)}
-
           {item.imageLinks && <div className="h-50 inline-flex overflow-x-scroll no-scrollbar scrolling-touch scroll-smooth">
             {
               item.imageLinks.split('\n').filter(Boolean).map((url: string) => <img
@@ -53,6 +55,7 @@ export default async function Home() {
                 alt=""
               />)
             }
+
           </div>}
         </ItemList >)
       }

@@ -75,7 +75,7 @@ module.exports = {
       },
       boxShadow: {
         "card-shadow": "card-shadow",
-      }
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],
