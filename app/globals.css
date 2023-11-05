@@ -4,6 +4,22 @@
 
 @layer base {
   :root {
+
+    /* my colors */
+    --white: 255, 255, 255;
+    --black: 0, 0, 0;
+    --salmon: 255, 148, 124;
+    --yellow: 240, 187 0;
+    --middle-blue: 26, 39, 73;
+    --dark-blue: 14, 25, 43;
+    --black-bluish: 6, 13, 24;
+    --lillish: 184, 192, 248;
+    --dark-lillish: 136, 149, 192;
+    --green: 85, 243, 206;
+
+
+
+
     --background: 216, 59%, 6%;
     --foreground: 226, 31%, 64%;
 
@@ -35,10 +51,6 @@
 
     --radius: 0.625rem;
 
-    --card-shadow : 0 0 0 1px rgba(198, 204, 248, 0.18);
-
-    --salmon: rgba(255, 148, 124, 0.1);
-    --salmon-bg: rgba(255, 148, 124, 0.15);
   }
 
   .dark {
@@ -69,18 +81,18 @@
     --border: 20 5.9% 90%;
     --input: 20 5.9% 90%;
     --ring: 20 14.3% 4.1%;
-  }
-}
 
-@layer base {
+  }
+
+
   * {
     @apply border-border;
   }
-
   body {
-    @apply bg-background text-foreground;
+    @apply bg-black_bluish text-lillish;
   }
 }
+
 
 @layer utilities {
     @variants responsive {

@@ -22,6 +22,22 @@ module.exports = {
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
+        
+        //my css colors
+        black: "rgb(var(--black),1)",
+        yellow: "rgb(var(--yellow),1)",
+        dark_blue: "rgb(var(--dark-blue),1)",
+        black_bluish: "rgb(var(--black-bluish),1)",
+        lillish: "rgb(var(--lillish),1)",
+        dark_lillish: "rgb(var(--dark-lillish),1)",
+        yellow_15: "rgb(var(--yellow),0.15)",
+        green: "rgb(var(--green),1)",
+        green_20: "rgb(var(--green),0.20)",
+        salmon: "rgb(var(--salmon),1)",
+        salmon_10: "rgb(var(--salmon),0.10)",
+        
+
+
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
@@ -54,6 +70,13 @@ module.exports = {
           DEFAULT: "var(--innercard)",
         },
       },
+
+      // my css boxshadow
+      boxShadow: {
+        "sm" : "0 -1px 0px 0px rgba(198,204,248,0.15)",
+      },
+
+
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
@@ -72,9 +95,6 @@ module.exports = {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-      },
-      boxShadow: {
-        "card-shadow": "card-shadow",
       },
     },
   },
