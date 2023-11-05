@@ -25,12 +25,16 @@ module.exports = {
         
         //my css colors
         black: "rgb(var(--black),1)",
+        white: "rgb(var(--white),1)",
+        white_75: "rgb(var(--white),0.75)",
+        white_50: "rgb(var(--white),0.50)",
         yellow: "rgb(var(--yellow),1)",
+        yellow_15: "rgb(var(--yellow),0.15)",
         dark_blue: "rgb(var(--dark-blue),1)",
         black_bluish: "rgb(var(--black-bluish),1)",
         lillish: "rgb(var(--lillish),1)",
+        lillish_5: "rgb(var(--lillish),0.05)",
         dark_lillish: "rgb(var(--dark-lillish),1)",
-        yellow_15: "rgb(var(--yellow),0.15)",
         green: "rgb(var(--green),1)",
         green_20: "rgb(var(--green),0.20)",
         salmon: "rgb(var(--salmon),1)",
@@ -69,6 +73,15 @@ module.exports = {
         innercard: {
           DEFAULT: "var(--innercard)",
         },
+      },
+
+      // my lineheights
+      lineHeight: {
+        'leading-tight': '1',
+        'leading-snug': '1.3',
+        'leading-normal': '1.5',
+        'leading-relaxed': '1.6',
+        'leading-loose': '1.8',
       },
 
       // my css boxshadow

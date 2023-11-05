@@ -24,7 +24,7 @@ export const Attribute = ({
     hideTitle
 }: AttributeItem & { hideTitle?: boolean }) => (
     <>
-        {!hideTitle && <span className="mb-1.5 text-foreground text-sm">{rename || title}</span>}<span className="mx-2 text-card-foreground text-sm">{value}{showMax === 'yes' && ` / ${max}`} {unit}</span>
+        {!hideTitle && <span className="mb-1.5 text-dark_lillish text-sm leading-normal">{rename || title}</span>}<span className="mx-2 text-lillish text-sm leading-normal">{value}{showMax === 'yes' && ` / ${max}`} {unit}</span>
     </>
 
 )
