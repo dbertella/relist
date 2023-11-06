@@ -12,9 +12,9 @@
     --yellow: 240, 187 0;
     --middle-blue: 26, 39, 73;
     --dark-blue: 14, 25, 43;
-    --black-bluish: 6, 13, 24;
+    --black-blue: 6, 13, 24;
     --lillish: 184, 192, 248;
-    --dark-lillish: 136, 149, 192;
+    --dark-lillish: 142, 156, 255;
     --alternative-lillish: 145, 155, 207;
     --green: 85, 243, 206;
 
@@ -88,9 +88,6 @@
 
   * {
     @apply border-border;
-  }
-  body {
-    @apply bg-black_bluish text-lillish;
   }
 }
 

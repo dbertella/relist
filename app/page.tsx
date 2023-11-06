@@ -22,7 +22,7 @@ export default async function Home() {
   const paraghraph = meta.filter(it => ['paragraph'].includes(it.type)) ?? []
   return (
     <main className="max-w-md m-auto px-4 leading-normal">
-      <Card className="py-4 px-1 border-none rounded-none bg-background">
+      <Card className="py-4 px-1 border-none rounded-none bg-level2">
         <H3>
           A {info.author}&apos;s list
         </H3>
@@ -36,7 +36,7 @@ export default async function Home() {
         </H2>
       </Card>
 
-      <menu className="m-4 justify-between items-start flex text-white">
+      <menu className="m-4 justify-between items-start flex text-white-100">
         <span className="flex flex-1 flex-col items-center">FILTER</span><span className="flex flex-1 flex-col items-center">SORT</span><span className="flex flex-1 flex-col items-center">DETAILS</span><span className="flex flex-1 flex-col items-center">FAV</span>
       </menu>
 
@@ -45,8 +45,8 @@ export default async function Home() {
         items?.map((item: Record<string, string>) => <ItemList key={item.name} title={item.name} footer={item.categories?.split(',')?.map(tag => <Badge key={tag}>{tag}</Badge>)}>
 
 
-          {primaryAttributes.length > 0 && <div className="flex justify-between flex-wrap items-start p-4 mb-4 rounded-lg bg-lillish_5">
-              {primaryAttributes.map((attr: AttributeItem) => <div className="flex flex-1 flex-col items-center text-base"> <PrimaryAttribute key={attr.title} className="text-base" {...attr} value={item[camelCase(attr.title)]} /> </div>)}
+          {primaryAttributes.length > 0 && <div className="flex justify-between flex-wrap items-start p-4 mb-4 rounded-lg bg-white-5">
+              {primaryAttributes.map((attr: AttributeItem) => <div className="flex flex-1 flex-col items-center text-base"> <PrimaryAttribute key={attr.title} className="text-wording" {...attr} value={item[camelCase(attr.title)]} /> </div>)}
           </div>}
 
           {secondaryAttributes.map(attr => <OtherAttribute className="mb-4 text-sm" key={attr.title} {...attr} value={item[camelCase(attr.title)]} />)}

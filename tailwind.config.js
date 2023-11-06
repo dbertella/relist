@@ -24,21 +24,64 @@ module.exports = {
         foreground: "hsl(var(--foreground))",
         
         //my css colors
-        black: "rgb(var(--black),1)",
-        white: "rgb(var(--white),1)",
-        white_75: "rgb(var(--white),0.75)",
-        white_50: "rgb(var(--white),0.50)",
-        yellow: "rgb(var(--yellow),1)",
-        yellow_15: "rgb(var(--yellow),0.15)",
-        dark_blue: "rgb(var(--dark-blue),1)",
-        black_bluish: "rgb(var(--black-bluish),1)",
-        lillish: "rgb(var(--lillish),1)",
-        lillish_5: "rgb(var(--lillish),0.05)",
-        dark_lillish: "rgb(var(--dark-lillish),1)",
-        green: "rgb(var(--green),1)",
-        green_20: "rgb(var(--green),0.20)",
-        salmon: "rgb(var(--salmon),1)",
-        salmon_10: "rgb(var(--salmon),0.10)",
+        white: {
+          100: 'rgb(var(--white),1)',
+          75: 'rgb(var(--white),0.75)',
+          50: 'rgb(var(--white),0.5)',
+          20: 'rgb(var(--white),0.2)',
+          10: 'rgb(var(--white),0.1)',
+          5: 'rgb(var(--white),0.05)',
+        },
+        black: {
+          100: 'rgb(var(--black),1)',
+          75: 'rgb(var(--black),0.75)',
+          50: 'rgb(var(--black),0.5)',
+          20: 'rgb(var(--black),0.2)',
+          10: 'rgb(var(--black),0.1)',
+          5: 'rgb(var(--black),0.05)',
+        },
+        action: {
+          100: 'rgb(var(--yellow),1)',
+          75: 'rgb(var(--yellow),0.75)',
+          50: 'rgb(var(--yellow),0.5)',
+          20: 'rgb(var(--yellow),0.2)',
+          10: 'rgb(var(--yellow),0.1)',
+        },
+        level1: {
+          100: 'rgb(var(--black-blue),1)',
+          75: 'rgb(var(--black-blue),0.75)',
+          50: 'rgb(var(--black-blue),0.5)',
+          20: 'rgb(var(--black-blue),0.2)',
+          10: 'rgb(var(--black-blue),0.1)',
+        },
+        level2: {
+          100: 'rgb(var(--dark-blue),1)',
+          75: 'rgb(var(--dark-blue),0.75)',
+          50: 'rgb(var(--dark-blue),0.5)',
+          20: 'rgb(var(--dark-blue),0.2)',
+          10: 'rgb(var(--dark-blue),0.1)',
+        },
+        level3: 'rgb(var(--white),0.1)',
+        green: {
+          100: 'rgb(var(--green),1)',
+          75: 'rgb(var(--green),0.75)',
+          50: 'rgb(var(--green),0.5)',
+          20: 'rgb(var(--green),0.2)',
+          10: 'rgb(var(--green),0.1)',
+        },
+        salmon: {
+          100: 'rgb(var(--salmon),1)',
+          75: 'rgb(var(--salmon),0.75)',
+          50: 'rgb(var(--salmon),0.5)',
+          20: 'rgb(var(--salmon),0.2)',
+          10: 'rgb(var(--salmon),0.1)',
+        },
+        emphasis: 'rgb(var(--lillish),1)',
+        wording: 'rgb(var(--dark-lillish),1)',
+        gradient: {
+          top: 'rgb(var(--middle-blue),1)',
+          bottom: 'rgb(var(--black-blue),1)', 
+        },
         
 
 
@@ -88,6 +131,8 @@ module.exports = {
       boxShadow: {
         "sm" : "0 -1px 0px 0px rgba(198,204,248,0.15)",
       },
+
+
 
 
       borderRadius: {
