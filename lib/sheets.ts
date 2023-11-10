@@ -1,7 +1,8 @@
 import { google } from 'googleapis';
 import { camelCase } from 'lodash';
+import { unstable_cache } from 'next/cache';
 
-export async function getDataFromSheet(spreadsheetId: string, sheetName: string): Promise<Record<string, string>[]> {
+export const getDataFromSheet = unstable_cache(async function getDataFromSheet(spreadsheetId: string, sheetName: string): Promise<Record<string, string>[]> {
     try {
         const target = ['https://www.googleapis.com/auth/spreadsheets.readonly'];
         const jwt = new google.auth.JWT(
@@ -10,7 +11,6 @@ export async function getDataFromSheet(spreadsheetId: string, sheetName: string)
             `${process.env.GOOGLE_SHEETS_PRIVATE_KEY}`.replace(/\\n/g, '\n'),
             target
         );
-
         const sheets = google.sheets({ version: 'v4', auth: jwt });
         const response = await sheets.spreadsheets.values.get({
             spreadsheetId: spreadsheetId,
@@ -26,4 +26,4 @@ export async function getDataFromSheet(spreadsheetId: string, sheetName: string)
         console.log(err);
     }
     return [];
-}
+}, ['my-sheet-data'])

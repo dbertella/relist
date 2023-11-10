@@ -1,8 +1,7 @@
 import { PageProps } from "../type";
 import { FilteringForm } from "./FilteringForm";
-import { groupBy,  } from "lodash";
+import { groupBy } from "lodash";
 import { getRelistData } from "@/lib/relistData";
-
 
 export default async function FilterComponent({ params }: PageProps) {
     const { meta } = await getRelistData(params.sheetId)

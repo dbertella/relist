@@ -2,8 +2,6 @@ import { PageProps } from './type'
 import List from './List'
 import { getRelistData } from '@/lib/relistData'
 
-export const dynamic = 'force-dynamic'
-
 export default async function Page({ params }: PageProps) {
     const { meta, items } = await getRelistData(params.sheetId)
     const primaryAttributes = meta.filter(it => ['number', 'range'].includes(it.type) && it.inPreview === 'yes') ?? []
