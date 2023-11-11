@@ -1,7 +1,8 @@
-import { match } from 'ts-pattern'
+import { match, P } from 'ts-pattern'
 import { camelCase, mapValues, maxBy, minBy, range, pickBy } from 'lodash';
 import { getDataFromSheet } from './sheets';
 import { AttributeItem } from '@/components/Attributes';
+import { unstable_cache } from 'next/cache';
 
 export type RelistItem = {
     imageLinks: string,
@@ -10,7 +11,7 @@ export type RelistItem = {
     description: string,
 } & Record<string, string | number | number[]>
 
-export async function getRelistData(spreadsheetId: string) {
+export const getRelistData = unstable_cache(async (spreadsheetId: string) => {
     const [info] = await getDataFromSheet(spreadsheetId, 'info')
     const meta = await getDataFromSheet(spreadsheetId, info.sheetForListSetup)
     const items = await getDataFromSheet(spreadsheetId, info.sheetForListData)
@@ -31,22 +32,20 @@ export async function getRelistData(spreadsheetId: string) {
     ) as RelistItem[]
     const parsedMeta = meta.map((property) => {
         const key = camelCase(property.title)
+        const range = parsedItems.flatMap(it => it[key]).filter(Boolean).sort()
+        const min = range[0]
+        const max = range.at(-1)
         return {
             ...property,
-            ...pickBy(match(property.type)
-                .with('number', () => {
+            ...match(property.type)
+                .with(P.union('number', 'range'), () => {
                     return {
-                        min: Number(property.min || minBy(items, key)?.[key]),
-                        max: Number(property.max || maxBy(items, key)?.[key])
+                        min: Number(property.min || min),
+                        max: Number(property.max || max)
                     }
                 })
-                .with('range', () => {
-                    return {
-                        min: Number(property.min || minBy(items, it => it[key]?.[0])?.[key]),
-                        max: Number(property.max || maxBy(items, it => it[key]?.at(-1))?.[key])
-                    }
-                })
-                .otherwise(() => null))
+
+                .otherwise(() => null)
 
         }
     }) as unknown as AttributeItem[]
@@ -56,4 +55,4 @@ export async function getRelistData(spreadsheetId: string) {
         meta: parsedMeta,
         items: parsedItems
     };
-}
+})

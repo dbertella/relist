@@ -18,7 +18,10 @@ export function FilteringForm({ numbers = [], ranges = [], texts = [] }: Props) 
     const { params, searchParams, query, router, pathname, createQueryString } = useQueryString()
     return (
         <>
-            <div className="grid justify-items-end">
+            <div className="flex justify-between">
+                <Link href={{
+                    pathname: `/${params.sheetId}`,
+                }} className="text-primary-foreground align-self-right">Reset Filters</Link>
                 <Link href={{
                     pathname: `/${params.sheetId}`,
                     query: query
@@ -33,7 +36,7 @@ export function FilteringForm({ numbers = [], ranges = [], texts = [] }: Props) 
                 <Slider
                     min={attribute.min}
                     max={attribute.max}
-                    defaultValue={searchParams.get(attribute.title)?.split(',').map(it => Number(it)) || [attribute.min, attribute.max]}
+                    defaultValue={searchParams.get(camelCase(attribute.title))?.split(SEPARATOR).map(it => Number(it)) || [attribute.min, attribute.max]}
                     step={1}
                     onValueChange={(value) => router.replace(pathname + '?' + createQueryString(camelCase(attribute.title), value.join(SEPARATOR)))}
                 />

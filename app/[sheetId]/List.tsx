@@ -8,6 +8,7 @@ import { useSearchParams } from 'next/navigation'
 import { orderBy } from 'lodash'
 import { SEPARATOR } from '@/lib/constants'
 import { RelistItem } from '@/lib/relistData'
+import { match, P } from 'ts-pattern'
 
 type Props = {
     items: RelistItem[]
@@ -17,14 +18,12 @@ type Props = {
     paragraph: AttributeItem[]
 }
 
-
 const getAttributeValue = (value: string | number | number[]) => {
-    if (Array.isArray(value)) {
-        const min = value[0]
-        const max = value.at(-1) ?? min
+    return match(value).with(P.array(), (val) => {
+        const min = val[0]
+        const max = val.at(-1) ?? min
         return min === max ? `${min}` : `${min} - ${max}`
-    }
-    return `${value}`
+    }).otherwise(() => `${value}`)
 }
 
 export default function List({
@@ -45,7 +44,13 @@ export default function List({
             searchParams.forEach((value: string, key: string) => {
                 if (['orderBy', 'sort'].includes(key)) { return }
                 const [min, max] = value.split(SEPARATOR)
-                if (Number(item[key]) < Number(min) && Number(item[key]) > Number(max)) {
+                const [itemMin, itemMax] = match(item[key]).with(P.array(), (val) => {
+                    const min = val[0]
+                    const max = val.at(-1) ?? min
+                    return [min, max]
+                }).otherwise((val) => [val, val])
+
+                if (itemMin < min || itemMax > max) {
                     isInvalid.push(true)
                 }
             })
