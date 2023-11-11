@@ -4,8 +4,8 @@ export type AttributeItem = {
     title: string,
     type: 'text' | 'number' | 'range',
     rename: string,
-    min: string,
-    max: string,
+    min: number,
+    max: number,
     showMax: string,
     unit: string,
     size: string,
@@ -21,7 +21,8 @@ export const Attribute = ({
     max,
     showMax,
     unit,
-    hideTitle
+    hideTitle,
+    type
 }: AttributeItem & { hideTitle?: boolean }) => (
     <>
         {!hideTitle && <span className="mb-1.5 text-dark_lillish text-sm leading-normal">{rename || title}</span>}<span className="mx-2 text-lillish text-sm leading-normal">{value}{showMax === 'yes' && ` / ${max}`} {unit}</span>
