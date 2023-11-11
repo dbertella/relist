@@ -16,8 +16,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body className={ruda.className}>{children}
+    <html lang="en" className="bg-level1-100 text-wording">
+      <body className={ruda.className} >{children}
       </body>
     </html>
   )
