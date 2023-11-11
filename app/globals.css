@@ -25,14 +25,14 @@
     --foreground: 226, 31%, 64%;
 
     --card: 218, 50%, 11%;
-    --innercard: rgba(145, 155, 207, 0.06);
+    --innercard: 230, 39%, 69%, 0.05;
     --card-foreground: 233, 82%, 85%;
 
     --popover: 222, 49%, 19%;
     --popover-foreground: 233, 82%, 85%;
 
-    --primary: 218, 50%, 11%;
-    --primary-foreground: 233, 82%, 85%;
+    --primary: 47, 100%, 47%;
+    --primary-foreground: 47, 100%, 47%;
 
     --secondary: rgba(240, 187, 0, 0.1);
     --secondary-foreground: 47, 100%, 47%;
@@ -40,7 +40,7 @@
     --muted: 216, 59%, 6%;
     --muted-foreground: 0 0% 100%;
 
-    --accent: rgba(85, 243, 206, 0.2);
+    --accent: 166, 87%, 64%, 1;
     --accent-foreground: 166, 87%, 64%;
 
     --destructive: 0 62.8% 30.6%;
@@ -52,6 +52,7 @@
 
     --radius: 0.625rem;
 
+    --card-shadow: 0 0 0 1px rgba(198, 204, 248, 0.18);
   }
 
   .dark {
@@ -93,16 +94,19 @@
 
 
 @layer utilities {
-    @variants responsive {
-      /* Hide scrollbar for Chrome, Safari and Opera */
-      .no-scrollbar::-webkit-scrollbar {
-          display: none;
-      }
+  @variants responsive {
 
-      /* Hide scrollbar for IE, Edge and Firefox */
-      .no-scrollbar {
-          -ms-overflow-style: none;  /* IE and Edge */
-          scrollbar-width: none;  /* Firefox */
-      }
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* Hide scrollbar for IE, Edge and Firefox */
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      /* IE and Edge */
+      scrollbar-width: none;
+      /* Firefox */
     }
   }
+}

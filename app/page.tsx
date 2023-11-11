@@ -6,7 +6,7 @@ import { camelCase } from 'lodash'
 import { Card } from '../components/ui/card'
 import { AttributeItem, OtherAttribute, PrimaryAttribute } from '@/components/Attributes'
 import { Alfa_Slab_One } from 'next/font/google'
-const alfa_slab_one = Alfa_Slab_One({ weight:'400', subsets: ['latin'] })
+const alfa_slab_one = Alfa_Slab_One({ weight: '400', subsets: ['latin'] })
 
 const SHEET_ID = '1ZyDFUqVNyhiN7I-E2AKytdwv_NrNY6K1Ch-zkFwytCs'
 
@@ -14,7 +14,7 @@ export const dynamic = 'force-dynamic'
 
 export default async function Home() {
   const [info] = await getDataFromSheet(SHEET_ID, 'info')
-  const meta = await getDataFromSheet(SHEET_ID, info.sheetForListSetup) as AttributeItem[]
+  const meta = await getDataFromSheet(SHEET_ID, info.sheetForListSetup) as unknown as AttributeItem[]
   const items = await getDataFromSheet(SHEET_ID, info.sheetForListData)
   const primaryAttributes = meta.filter(it => ['number', 'range'].includes(it.type) && it.inPreview === 'yes') ?? []
   const secondaryAttributes = meta.filter(it => ['number', 'range'].includes(it.type) && it.inPreview === 'no') ?? []
@@ -28,7 +28,7 @@ export default async function Home() {
         </H3>
         <div className={alfa_slab_one.className}>
           <H1>
-          {info.title}
+            {info.title}
           </H1>
         </div>
         <H2>
@@ -54,8 +54,8 @@ export default async function Home() {
           {paraghraph.map(attr => <OtherAttribute className="mb-4 text-sm" key={attr.title}  {...attr} value={item[camelCase(attr.title)]} hideTitle />)}
           {item.imageLinks && <div className="h-50 inline-flex overflow-x-scroll no-scrollbar scrolling-touch scroll-smooth">
             {
-              item.imageLinks.split('\n').filter(Boolean).map((url: string) => <img
-                key={url}
+              item.imageLinks.split('\n').filter(Boolean).map((url: string, i) => <img
+                key={url + i}
                 src={url.trim()}
                 className="h-48 rounded mr-4"
                 alt=""
@@ -65,6 +65,6 @@ export default async function Home() {
           </div>}
         </ItemList >)
       }
-    </main >
+    </main>
   )
 }
