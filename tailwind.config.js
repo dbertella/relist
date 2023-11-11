@@ -62,14 +62,14 @@ module.exports = {
           10: 'rgb(var(--dark-blue),0.1)',
         },
         level3: 'rgb(var(--white),0.1)',
-        green: {
+        highlight: {
           100: 'rgb(var(--green),1)',
           75: 'rgb(var(--green),0.75)',
           50: 'rgb(var(--green),0.5)',
           20: 'rgb(var(--green),0.2)',
           10: 'rgb(var(--green),0.1)',
         },
-        salmon: {
+        neon: {
           100: 'rgb(var(--salmon),1)',
           75: 'rgb(var(--salmon),0.75)',
           50: 'rgb(var(--salmon),0.5)',
