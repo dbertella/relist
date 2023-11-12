@@ -4,12 +4,7 @@ import { getDataFromSheet } from './sheets';
 import { AttributeItem } from '@/components/Attributes';
 import { unstable_cache } from 'next/cache';
 
-export type RelistItem = {
-    imageLinks: string,
-    categories: string,
-    name: string,
-    description: string,
-} & Record<string, string | number | number[]>
+export type RelistItem = Record<string, string | number | number[]>
 
 export const getRelistData = unstable_cache(async (spreadsheetId: string) => {
     const [info] = await getDataFromSheet(spreadsheetId, 'info')
@@ -21,15 +16,18 @@ export const getRelistData = unstable_cache(async (spreadsheetId: string) => {
     const parsedItems = items.map(
         it => pickBy(mapValues(
             metaMap,
-            ({ type }, key) => match(type)
-                .with('number', () => Number(it[key]))
-                .with('range', () => {
-                    if (!it[key]) return
-                    const [min, max] = it[key].split('-').map(splitted => Number(splitted.trim()))
-                    return range(min, (max ?? min) + 1)
-                })
-                .otherwise(() => it[key])))
+            ({ type }, key) => {
+                if (!it[key]) return null
+                return match(type)
+                    .with('number', () => Number(it[key]))
+                    .with('range', () => {
+                        const [min, max] = it[key].split('-').map(splitted => Number(splitted.trim()))
+                        return range(min, (max ?? min) + 1)
+                    })
+                    .otherwise(() => it[key])
+            }))
     ) as RelistItem[]
+
     const parsedMeta = meta.map((property) => {
         const key = camelCase(property.title)
         const range = parsedItems.flatMap(it => it[key]).filter(Boolean).sort()

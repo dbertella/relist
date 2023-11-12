@@ -13,6 +13,40 @@ type Props = {
   texts: AttributeItem[];
 };
 
+const FilterItem = ({ attribute }: { attribute: AttributeItem }) => {
+  const { searchParams, router, pathname, createQueryString } =
+    useQueryString();
+
+  const value = searchParams
+    .get(camelCase(attribute.title))
+    ?.split(SEPARATOR)
+    .map((it) => Number(it)) || [attribute.min, attribute.max]
+
+  return <div key={attribute.title} className="mb-10">
+    <div className="mb-2 flex justify-between">
+      <div>{value[0]}</div>
+      <div>{attribute.rename || attribute.title}</div>
+      <div>{value.at(-1)}</div>
+    </div>
+    <Slider
+      min={attribute.min}
+      max={attribute.max}
+      defaultValue={value}
+      step={1}
+      onValueChange={(value) =>
+        router.replace(
+          pathname +
+          "?" +
+          createQueryString(
+            camelCase(attribute.title),
+            value.join(SEPARATOR)
+          )
+        )
+      }
+    />
+  </div>
+}
+
 export function FilteringForm({
   numbers = [],
   ranges = [],
@@ -41,36 +75,7 @@ export function FilteringForm({
           Close
         </Link>
       </div>
-      {[...numbers, ...ranges].map((attribute) => (
-        <div key={attribute.title} className="mb-10">
-          <div className="mb-2 flex justify-between">
-            <div>{attribute.min}</div>
-            <div>{attribute.rename || attribute.title}</div>
-            <div>{attribute.max}</div>
-          </div>
-          <Slider
-            min={attribute.min}
-            max={attribute.max}
-            defaultValue={
-              searchParams
-                .get(camelCase(attribute.title))
-                ?.split(SEPARATOR)
-                .map((it) => Number(it)) || [attribute.min, attribute.max]
-            }
-            step={1}
-            onValueChange={(value) =>
-              router.replace(
-                pathname +
-                  "?" +
-                  createQueryString(
-                    camelCase(attribute.title),
-                    value.join(SEPARATOR)
-                  )
-              )
-            }
-          />
-        </div>
-      ))}
+      {[...numbers, ...ranges].map((attribute) => <FilterItem key={attribute.title} attribute={attribute} />)}
     </>
   );
 }
