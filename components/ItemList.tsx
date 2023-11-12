@@ -3,16 +3,16 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 
 
 type Props = {
-    title: ReactNode,
-    description?: ReactNode,
+    title: string[],
+    description?: string[],
     children: ReactNode,
     footer: ReactNode
 }
 export const ItemList = ({ title, description, children, footer }: Props) => {
     return <Card>
         <CardHeader>
-            <CardTitle>{title}</CardTitle>
-            {description && <CardDescription>{description}</CardDescription>}
+            {title.map(t => <CardTitle key={`${t}`}>{t}</CardTitle>)}
+            {description?.map(t => <CardDescription key={`${t}`}>{t}</CardDescription>)}
         </CardHeader>
         <CardContent>
             {children}

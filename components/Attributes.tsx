@@ -1,8 +1,19 @@
 import { cn } from "@/lib/utils"
 
+export const AttributeType = {
+    Title: 'title',
+    Number: 'number',
+    Range: 'range',
+    Tags: 'tags',
+    Imageurl: 'imageurl',
+    Paragraph: 'paragraph',
+    Text: 'text'
+} as const
+export type AttributeType = ValueOf<typeof AttributeType>
+
 export type AttributeItem = {
     title: string,
-    type: 'text' | 'number' | 'range',
+    type: AttributeType,
     rename: string,
     min: number,
     max: number,
@@ -10,7 +21,7 @@ export type AttributeItem = {
     unit: string,
     size: string,
     inPreview: 'yes' | 'no'
-    value: string
+    value: string | null
     className?: string
 
 }
@@ -22,7 +33,6 @@ export const Attribute = ({
     showMax,
     unit,
     hideTitle,
-    type
 }: AttributeItem & { hideTitle?: boolean }) => (
     <>
         {!hideTitle && <span className="mb-1.5 text-emphasis text-sm leading-normal">{rename || title}</span>}<span className="mx-2 text-wording text-sm leading-normal">{value}{showMax === 'yes' && ` / ${max}`} {unit}</span>
