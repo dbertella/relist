@@ -43,10 +43,10 @@ const useFilterItems = (items: RelistItem[]) => {
 
             const shouldBeShowed = match(item[key])
                 .with(P.array(), (val) =>
-                    min > val[val.length - 1] || max < val[0]
+                    !(val[val.length - 1] < min || val[0] > max)
                 )
                 .with(P.nullish, () => false)
-                .otherwise((val) => Number(val) < min || Number(val) > max)
+                .otherwise((val) => Number(val) >= min && Number(val) <= max)
 
             if (!shouldBeShowed) {
                 toBeFiltered.push(true);
