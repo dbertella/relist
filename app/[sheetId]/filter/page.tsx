@@ -4,12 +4,16 @@ import { groupBy } from "lodash";
 import { getRelistData } from "@/lib/relistData";
 
 export default async function FilterComponent({ params }: PageProps) {
-    const { meta } = await getRelistData(params.sheetId)
+  const { meta } = await getRelistData(params.sheetId);
 
-    const attributeMap = groupBy(meta, 'type')
-    return (
-        <main className="max-w-3xl m-auto">
-            <FilteringForm numbers={attributeMap.number} ranges={attributeMap.range} texts={attributeMap.text} />
-        </main>
-    )
+  const attributeMap = groupBy(meta, "type");
+  return (
+    <main className="max-w-3xl m-auto p-6 bg-gradient-to-b from-gradient-top to-gradient-bottom">
+      <FilteringForm
+        numbers={attributeMap.number}
+        ranges={attributeMap.range}
+        texts={attributeMap.text}
+      />
+    </main>
+  );
 }

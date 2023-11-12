@@ -2,11 +2,11 @@
 module.exports = {
   darkMode: ["class"],
   content: [
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
-	],
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
+  ],
   theme: {
     container: {
       center: true,
@@ -22,68 +22,67 @@ module.exports = {
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
-        
+
         //my css colors
         white: {
-          100: 'rgb(var(--white),1)',
-          75: 'rgb(var(--white),0.75)',
-          50: 'rgb(var(--white),0.5)',
-          20: 'rgb(var(--white),0.2)',
-          10: 'rgb(var(--white),0.1)',
-          5: 'rgb(var(--white),0.05)',
+          100: "rgb(var(--white),1)",
+          75: "rgb(var(--white),0.75)",
+          50: "rgb(var(--white),0.5)",
+          20: "rgb(var(--white),0.2)",
+          10: "rgb(var(--white),0.1)",
+          5: "rgb(var(--white),0.05)",
         },
         black: {
-          100: 'rgb(var(--black),1)',
-          75: 'rgb(var(--black),0.75)',
-          50: 'rgb(var(--black),0.5)',
-          20: 'rgb(var(--black),0.2)',
-          10: 'rgb(var(--black),0.1)',
-          5: 'rgb(var(--black),0.05)',
+          100: "rgb(var(--black),1)",
+          75: "rgb(var(--black),0.75)",
+          50: "rgb(var(--black),0.5)",
+          20: "rgb(var(--black),0.2)",
+          10: "rgb(var(--black),0.1)",
+          5: "rgb(var(--black),0.05)",
         },
         action: {
-          100: 'rgb(var(--yellow),1)',
-          75: 'rgb(var(--yellow),0.75)',
-          50: 'rgb(var(--yellow),0.5)',
-          20: 'rgb(var(--yellow),0.2)',
-          10: 'rgb(var(--yellow),0.1)',
+          100: "rgb(var(--yellow),1)",
+          75: "rgb(var(--yellow),0.75)",
+          50: "rgb(var(--yellow),0.5)",
+          20: "rgb(var(--yellow),0.2)",
+          10: "rgb(var(--yellow),0.1)",
         },
         level1: {
-          100: 'rgb(var(--black-blue),1)',
-          75: 'rgb(var(--black-blue),0.75)',
-          50: 'rgb(var(--black-blue),0.5)',
-          20: 'rgb(var(--black-blue),0.2)',
-          10: 'rgb(var(--black-blue),0.1)',
+          100: "rgb(var(--black-blue),1)",
+          75: "rgb(var(--black-blue),0.75)",
+          50: "rgb(var(--black-blue),0.5)",
+          20: "rgb(var(--black-blue),0.2)",
+          10: "rgb(var(--black-blue),0.1)",
         },
         level2: {
-          100: 'rgb(var(--dark-blue),1)',
-          75: 'rgb(var(--dark-blue),0.75)',
-          50: 'rgb(var(--dark-blue),0.5)',
-          20: 'rgb(var(--dark-blue),0.2)',
-          10: 'rgb(var(--dark-blue),0.1)',
+          100: "rgb(var(--dark-blue),1)",
+          75: "rgb(var(--dark-blue),0.75)",
+          50: "rgb(var(--dark-blue),0.5)",
+          20: "rgb(var(--dark-blue),0.2)",
+          10: "rgb(var(--dark-blue),0.1)",
         },
-        level3: 'rgb(var(--white),0.1)',
+        level3: "rgb(var(--white),0.1)",
         highlight: {
-          100: 'rgb(var(--green),1)',
-          75: 'rgb(var(--green),0.75)',
-          50: 'rgb(var(--green),0.5)',
-          20: 'rgb(var(--green),0.2)',
-          10: 'rgb(var(--green),0.1)',
+          100: "rgb(var(--green),1)",
+          75: "rgb(var(--green),0.75)",
+          50: "rgb(var(--green),0.5)",
+          20: "rgb(var(--green),0.2)",
+          10: "rgb(var(--green),0.1)",
         },
         neon: {
-          100: 'rgb(var(--salmon),1)',
-          75: 'rgb(var(--salmon),0.75)',
-          50: 'rgb(var(--salmon),0.5)',
-          20: 'rgb(var(--salmon),0.2)',
-          10: 'rgb(var(--salmon),0.1)',
+          100: "rgb(var(--salmon),1)",
+          75: "rgb(var(--salmon),0.75)",
+          50: "rgb(var(--salmon),0.5)",
+          20: "rgb(var(--salmon),0.2)",
+          10: "rgb(var(--salmon),0.1)",
         },
-        emphasis: 'rgb(var(--lillish),1)',
-        wording: 'rgb(var(--dark-lillish),1)',
+        emphasis: "rgb(var(--lillish),1)",
+        wording: "rgb(var(--dark-lillish),1)",
+        track: "rgb(var(--dark-lillish),0.1)",
         gradient: {
-          top: 'rgb(var(--middle-blue),1)',
-          bottom: 'rgb(var(--black-blue),1)', 
+          top: "rgb(var(--middle-blue),1)",
+          bottom: "rgb(var(--black-blue),1)",
         },
-        
-
 
         primary: {
           DEFAULT: "hsl(var(--primary))",
@@ -120,16 +119,16 @@ module.exports = {
 
       // my lineheights
       lineHeight: {
-        'leading-tight': '1',
-        'leading-snug': '1.3',
-        'leading-normal': '1.5',
-        'leading-relaxed': '1.6',
-        'leading-loose': '1.8',
+        "leading-tight": "1",
+        "leading-snug": "1.3",
+        "leading-normal": "1.5",
+        "leading-relaxed": "1.6",
+        "leading-loose": "1.8",
       },
 
       // my css boxshadow
       boxShadow: {
-        "sm" : "0 -1px 0px 0px rgba(198,204,248,0.15)",
+        sm: "0 -1px 0px 0px rgba(198,204,248,0.15)",
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -153,4 +152,4 @@ module.exports = {
     },
   },
   plugins: [require("tailwindcss-animate")],
-}
+};
