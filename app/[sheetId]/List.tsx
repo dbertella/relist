@@ -73,7 +73,7 @@ const PrimaryBlock = ({
     .filter(filterNonNullValues)
 
   return values?.length > 0 ? (
-    <div className="flex justify-between flex-wrap items-start p-4 mb-4 rounded-lg bg-white-5">
+    <div className="flex justify-between flex-wrap items-start p-4 mb-4 rounded-lg bg-level3">
       {values.map(attribute => (
         <div
           key={attribute.title}
@@ -139,11 +139,10 @@ export default function List({ items: rawItems, attributes }: Props) {
         <ItemList
           key={`${item[camelCase(titleAttrs[0].title)]}`}
           title={titleAttrs?.map(attr => item[camelCase(attr.title)]) as string[]}
-          footer={tagsAttrs?.flatMap(
-            attr =>
-              (item[camelCase(attr.title)] as string)
-                ?.split(',')
-                ?.map(tag => <Badge key={tag}>{tag}</Badge>),
+          footer={tagsAttrs?.flatMap(attr =>
+            (item[camelCase(attr.title)] as string)
+              ?.split(',')
+              ?.map(tag => <Badge key={tag}>{tag}</Badge>),
           )}
         >
           <PrimaryBlock item={item} attributes={attributes.primary} />

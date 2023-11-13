@@ -31,7 +31,7 @@ export const NavBar = () => {
   const { params, query, pathname } = useQueryString()
 
   return (
-    <menu className="m-4 justify-between items-start flex text-white-100">
+    <menu className="m-4 justify-between items-start flex text-paper-100">
       <MenuItem
         path="filter"
         onIcon="/icon/filter=on.svg"

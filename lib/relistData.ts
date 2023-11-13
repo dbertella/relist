@@ -1,5 +1,5 @@
 import { match, P } from 'ts-pattern'
-import { camelCase, mapValues, maxBy, minBy, range, pickBy } from 'lodash'
+import { camelCase, mapValues, range, pickBy } from 'lodash'
 import { getDataFromSheet } from './sheets'
 import { AttributeItem } from '@/components/Attributes'
 import { unstable_cache } from 'next/cache'
