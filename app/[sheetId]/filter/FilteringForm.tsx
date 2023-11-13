@@ -1,59 +1,53 @@
-"use client";
+'use client'
 
-import { AttributeItem } from "@/components/Attributes";
-import Link from "next/link";
-import { useQueryString } from "@/lib/utils";
-import { Slider } from "@/components/ui/slider";
-import { SEPARATOR } from "@/lib/constants";
-import { camelCase } from "lodash";
+import { AttributeItem } from '@/components/Attributes'
+import Link from 'next/link'
+import { useQueryString } from '@/lib/utils'
+import { Slider } from '@/components/ui/slider'
+import { SEPARATOR } from '@/lib/constants'
+import { camelCase } from 'lodash'
 
 type Props = {
-  numbers: AttributeItem[];
-  ranges: AttributeItem[];
-  texts: AttributeItem[];
-};
+  numbers: AttributeItem[]
+  ranges: AttributeItem[]
+  texts: AttributeItem[]
+}
 
 const FilterItem = ({ attribute }: { attribute: AttributeItem }) => {
-  const { searchParams, router, pathname, createQueryString } =
-    useQueryString();
+  const { searchParams, router, pathname, createQueryString } = useQueryString()
 
   const value = searchParams
     .get(camelCase(attribute.title))
     ?.split(SEPARATOR)
-    .map((it) => Number(it)) || [attribute.min, attribute.max]
+    .map(it => Number(it)) || [attribute.min, attribute.max]
 
-  return <div key={attribute.title} className="mb-10">
-    <div className="mb-2 flex justify-between">
-      <div>{value[0]}</div>
-      <div>{attribute.rename || attribute.title}</div>
-      <div>{value.at(-1)}</div>
-    </div>
-    <Slider
-      min={attribute.min}
-      max={attribute.max}
-      defaultValue={value}
-      step={1}
-      onValueChange={(value) =>
-        router.replace(
-          pathname +
-          "?" +
-          createQueryString(
-            camelCase(attribute.title),
-            value.join(SEPARATOR)
+  return (
+    <div key={attribute.title} className="mb-10">
+      <div className="mb-2 flex justify-between">
+        <div>{value[0]}</div>
+        <div>{attribute.rename || attribute.title}</div>
+        <div>{value.at(-1)}</div>
+      </div>
+      <Slider
+        min={attribute.min}
+        max={attribute.max}
+        defaultValue={value}
+        step={1}
+        onValueChange={value =>
+          router.replace(
+            pathname +
+              '?' +
+              createQueryString(camelCase(attribute.title), value.join(SEPARATOR)),
           )
-        )
-      }
-    />
-  </div>
+        }
+      />
+    </div>
+  )
 }
 
-export function FilteringForm({
-  numbers = [],
-  ranges = [],
-  texts = [],
-}: Props) {
+export function FilteringForm({ numbers = [], ranges = [], texts = [] }: Props) {
   const { params, searchParams, query, router, pathname, createQueryString } =
-    useQueryString();
+    useQueryString()
   return (
     <>
       <div className="flex justify-between mb-10">
@@ -75,7 +69,9 @@ export function FilteringForm({
           Close
         </Link>
       </div>
-      {[...numbers, ...ranges].map((attribute) => <FilterItem key={attribute.title} attribute={attribute} />)}
+      {[...numbers, ...ranges].map(attribute => (
+        <FilterItem key={attribute.title} attribute={attribute} />
+      ))}
     </>
-  );
+  )
 }

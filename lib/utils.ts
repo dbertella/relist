@@ -1,7 +1,7 @@
-import { type ClassValue, clsx } from "clsx"
-import { useRouter, useParams, usePathname, useSearchParams } from "next/navigation"
-import { useCallback } from "react"
-import { twMerge } from "tailwind-merge"
+import { type ClassValue, clsx } from 'clsx'
+import { useRouter, useParams, usePathname, useSearchParams } from 'next/navigation'
+import { useCallback } from 'react'
+import { twMerge } from 'tailwind-merge'
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -22,7 +22,7 @@ export function useQueryString() {
 
       return params.toString()
     },
-    [searchParams]
+    [searchParams],
   )
 
   return {
@@ -31,6 +31,6 @@ export function useQueryString() {
     pathname,
     searchParams,
     query: searchParams.toString(),
-    createQueryString
+    createQueryString,
   }
 }

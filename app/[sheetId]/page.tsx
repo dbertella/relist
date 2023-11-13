@@ -18,6 +18,7 @@ export default async function Page({ params }: PageProps) {
       .with('imageurl', () => 'imageurl')
       .with('paragraph', () => 'paragraph')
       .with('text', () => 'text')
+      .with('link', () => 'link')
       .exhaustive(),
   ) as Record<AttributeType | 'primary' | 'secondary', AttributeItem[]>
 
