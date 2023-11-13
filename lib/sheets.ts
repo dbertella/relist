@@ -1,7 +1,7 @@
 import { google } from 'googleapis'
 import { camelCase } from 'lodash'
 
-export const getDataFromSheet = async function (
+export const getDataFromSheet = async function getDataFromSheet(
   spreadsheetId: string,
   sheetName: string,
 ): Promise<Record<string, string>[]> {

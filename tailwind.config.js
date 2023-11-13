@@ -1,12 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: ['class'],
-  darkMode: ['class'],
   content: [
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
     './pages/**/*.{ts,tsx}',
     './components/**/*.{ts,tsx}',
     './app/**/*.{ts,tsx}',
@@ -16,19 +11,12 @@ module.exports = {
     container: {
       center: true,
       padding: '2rem',
-      padding: '2rem',
       screens: {
-        '2xl': '1400px',
         '2xl': '1400px',
       },
     },
     extend: {
       colors: {
-        border: 'hsl(var(--border))',
-        input: 'hsl(var(--input))',
-        ring: 'hsl(var(--ring))',
-        background: 'hsl(var(--background))',
-        foreground: 'hsl(var(--foreground))',
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
@@ -104,35 +92,22 @@ module.exports = {
         'leading-normal': '1.5',
         'leading-relaxed': '1.6',
         'leading-loose': '1.8',
-        'leading-tight': '1',
-        'leading-snug': '1.3',
-        'leading-normal': '1.5',
-        'leading-relaxed': '1.6',
-        'leading-loose': '1.8',
       },
 
       // my css boxshadow
       boxShadow: {
-        sm: '0 -1px 0px 0px rgba(198,204,248,0.15)',
         sm: '0 -1px 0px 0px rgba(198,204,248,0.15)',
       },
       borderRadius: {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 6px)',
-        lg: 'var(--radius)',
-        md: 'calc(var(--radius) - 2px)',
-        sm: 'calc(var(--radius) - 6px)',
       },
       keyframes: {
         'accordion-down': {
-        'accordion-down': {
           from: { height: 0 },
           to: { height: 'var(--radix-accordion-content-height)' },
-          to: { height: 'var(--radix-accordion-content-height)' },
         },
-        'accordion-up': {
-          from: { height: 'var(--radix-accordion-content-height)' },
         'accordion-up': {
           from: { height: 'var(--radix-accordion-content-height)' },
           to: { height: 0 },
@@ -141,12 +116,8 @@ module.exports = {
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
-        'accordion-down': 'accordion-down 0.2s ease-out',
-        'accordion-up': 'accordion-up 0.2s ease-out',
       },
     },
   },
-  plugins: [require('tailwindcss-animate')],
-}
   plugins: [require('tailwindcss-animate')],
 }
