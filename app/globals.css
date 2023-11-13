@@ -18,15 +18,15 @@
     --dark-lillish: 142, 156, 255;
     --green: 85, 243, 206;
 
-    /* original theme colors */
+    /* dark theme colors */
     --paper: var(--white);
     --ink: var(--black);
     --neon: var(--salmon);
     --action: var(--yellow);
     --gradient-top: var(--middle-blue);
     --gradient-bottom: var(--black-blue);
-    --level2: var(--dark-blue);
     --level1: var(--black-blue);
+    --level2: var(--dark-blue);
     --emphasis: var(--lillish);
     --wording: var(--dark-lillish);
     --highlight: var(--green);
@@ -38,17 +38,26 @@
   * {
     @apply border-border;
   }
-
-  /* add light-mode class to the <html> tag to activate it */
-  html.light-mode {
+  html.bright-mode {
     filter: invert(1) hue-rotate(180deg);
   }
-  html.light-mode img {
+  html.bright-mode img {
     filter: invert(1) hue-rotate(180deg);
   }
-  html.light-mode menu img {
+  html.bright-mode menu img {
     filter: invert(0) hue-rotate(0deg);
   }
+}
+
+/* add light-mode class to the <html> tag to activate it */
+html.light-mode {
+  filter: invert(1) hue-rotate(180deg);
+}
+html.light-mode img {
+  filter: invert(1) hue-rotate(180deg);
+}
+html.light-mode menu img {
+  filter: invert(0) hue-rotate(0deg);
 }
 
 @layer utilities {
