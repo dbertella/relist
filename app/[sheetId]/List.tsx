@@ -14,6 +14,7 @@ import { orderBy } from 'lodash'
 import { SEPARATOR } from '@/lib/constants'
 import { RelistItem } from '@/lib/relistData'
 import { match, P } from 'ts-pattern'
+import { ORDER_QUERY_ITEMS } from './sort/SortingForm'
 
 type Props = {
   items: RelistItem[]
@@ -35,8 +36,9 @@ const useFilterItems = (items: RelistItem[]) => {
   const searchParams = useSearchParams()
   return items.filter(item => {
     const toBeFiltered: boolean[] = []
+
     searchParams.forEach((value: string, key: string) => {
-      if (['orderBy', 'sort'].includes(key)) {
+      if (ORDER_QUERY_ITEMS.includes(key)) {
         return
       }
       const [min, max] = value.split(SEPARATOR).map(it => Number(it))
@@ -139,11 +141,10 @@ export default function List({ items: rawItems, attributes }: Props) {
         <ItemList
           key={`${item[camelCase(titleAttrs[0].title)]}`}
           title={titleAttrs?.map(attr => item[camelCase(attr.title)]) as string[]}
-          footer={tagsAttrs?.flatMap(
-            attr =>
-              (item[camelCase(attr.title)] as string)
-                ?.split(',')
-                ?.map(tag => <Badge key={tag}>{tag}</Badge>),
+          footer={tagsAttrs?.flatMap(attr =>
+            (item[camelCase(attr.title)] as string)
+              ?.split(',')
+              ?.map(tag => <Badge key={tag}>{tag}</Badge>),
           )}
         >
           <PrimaryBlock item={item} attributes={attributes.primary} />

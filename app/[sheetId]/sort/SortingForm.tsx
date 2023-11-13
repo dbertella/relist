@@ -11,6 +11,13 @@ import { camelCase } from 'lodash'
 
 const OrderEnum = z.enum(['asc', 'desc'])
 
+export const OrderQueryItem = {
+  OrderBy: 'orderBy',
+  Sort: 'sort',
+}
+
+export const ORDER_QUERY_ITEMS = Object.values(OrderQueryItem)
+
 type Props = {
   attributes: AttributeItem[]
 }
@@ -34,9 +41,11 @@ export function SortingForm({ attributes }: Props) {
 
       <RadioGroup
         onValueChange={value =>
-          router.replace(pathname + '?' + createQueryString('orderBy', value))
+          router.replace(
+            pathname + '?' + createQueryString(OrderQueryItem.OrderBy, value),
+          )
         }
-        defaultValue={searchParams.get('orderBy') ?? undefined}
+        defaultValue={searchParams.get(OrderQueryItem.OrderBy) ?? undefined}
         className="flex flex-col space-y-1"
       >
         {attributes.map(attribute => (
@@ -51,9 +60,9 @@ export function SortingForm({ attributes }: Props) {
 
       <RadioGroup
         onValueChange={value =>
-          router.replace(pathname + '?' + createQueryString('sort', value))
+          router.replace(pathname + '?' + createQueryString(OrderQueryItem.Sort, value))
         }
-        defaultValue={searchParams.get('sort') ?? undefined}
+        defaultValue={searchParams.get(OrderQueryItem.Sort) ?? undefined}
         className="flex flex-col space-y-1"
       >
         {OrderEnum.options.map(it => (
