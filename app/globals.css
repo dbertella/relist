@@ -4,7 +4,6 @@
 
 @layer base {
   :root {
-
     /* my colors */
     --white: 255, 255, 255;
     --black: 0, 0, 0;
@@ -17,9 +16,6 @@
     --dark-lillish: 142, 156, 255;
     --alternative-lillish: 145, 155, 207;
     --green: 85, 243, 206;
-
-
-
 
     --background: 216, 59%, 6%;
     --foreground: 226, 31%, 64%;
@@ -83,19 +79,15 @@
     --border: 20 5.9% 90%;
     --input: 20 5.9% 90%;
     --ring: 20 14.3% 4.1%;
-
   }
-
 
   * {
     @apply border-border;
   }
 }
 
-
 @layer utilities {
   @variants responsive {
-
     /* Hide scrollbar for Chrome, Safari and Opera */
     .no-scrollbar::-webkit-scrollbar {
       display: none;

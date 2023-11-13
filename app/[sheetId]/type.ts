@@ -1,5 +1,5 @@
 export type PageProps = {
-    params: {
-        sheetId: string
-    }
+  params: {
+    sheetId: string
+  }
 }

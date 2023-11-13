@@ -10,19 +10,17 @@ export default async function Page({ params }: PageProps) {
 
   const attributes = groupBy(meta, it =>
     match(it.type)
-      .with(P.union('number', 'range'), () => { return it.inPreview === 'yes' ? 'primary' : 'secondary' })
+      .with(P.union('number', 'range'), () => {
+        return it.inPreview === 'yes' ? 'primary' : 'secondary'
+      })
       .with('title', () => 'title')
       .with('tags', () => 'tags')
       .with('imageurl', () => 'imageurl')
       .with('paragraph', () => 'paragraph')
       .with('text', () => 'text')
-      .exhaustive()
+      .with('link', () => 'link')
+      .exhaustive(),
   ) as Record<AttributeType | 'primary' | 'secondary', AttributeItem[]>
 
-  return (
-    <List
-      items={items}
-      attributes={attributes}
-    />
-  )
+  return <List items={items} attributes={attributes} />
 }

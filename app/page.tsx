@@ -9,7 +9,10 @@ export default async function Home() {
       <div>
         <p>Checklist:</p>
         <p>The spreadsheet must be publicly visible.</p>
-        <p>A copy of the “relist-data“ sheet must be added to the spreadsheet and filled in.</p>
+        <p>
+          A copy of the “relist-data“ sheet must be added to the spreadsheet and filled
+          in.
+        </p>
         <p>Visit the documentation for more info.</p>
       </div>
     </main>
