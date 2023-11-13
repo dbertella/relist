@@ -6,23 +6,20 @@ import { P, match } from 'ts-pattern'
 import { AttributeItem, AttributeType } from '@/components/Attributes'
 
 export default async function Page({ params }: PageProps) {
-    const { meta, items } = await getRelistData(params.sheetId)
+  const { meta, items } = await getRelistData(params.sheetId)
 
-    const attributes = groupBy(meta, it =>
-        match(it.type)
-            .with(P.union('number', 'range'), () => { return it.inPreview === 'yes' ? 'primary' : 'secondary' })
-            .with('title', () => 'title')
-            .with('tags', () => 'tags')
-            .with('imageurl', () => 'imageurl')
-            .with('paragraph', () => 'paragraph')
-            .with('text', () => 'text')
-            .exhaustive()
-    ) as Record<AttributeType | 'primary' | 'secondary', AttributeItem[]>
+  const attributes = groupBy(meta, it =>
+    match(it.type)
+      .with(P.union('number', 'range'), () => {
+        return it.inPreview === 'yes' ? 'primary' : 'secondary'
+      })
+      .with('title', () => 'title')
+      .with('tags', () => 'tags')
+      .with('imageurl', () => 'imageurl')
+      .with('paragraph', () => 'paragraph')
+      .with('text', () => 'text')
+      .exhaustive(),
+  ) as Record<AttributeType | 'primary' | 'secondary', AttributeItem[]>
 
-    return (
-        <List
-            items={items}
-            attributes={attributes}
-        />
-    )
+  return <List items={items} attributes={attributes} />
 }
