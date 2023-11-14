@@ -4,6 +4,8 @@ import { useQueryString } from '@/lib/utils'
 import { Toggle } from '@radix-ui/react-toggle'
 import Link from 'next/link'
 import Image from 'next/image'
+import { useMemo } from 'react'
+import { ORDER_QUERY_ITEMS } from './sort/SortingForm'
 
 const MenuItem = ({
   path,
@@ -28,14 +30,25 @@ const MenuItem = ({
 }
 
 export const NavBar = () => {
-  const { params, query, pathname } = useQueryString()
+  const { query } = useQueryString()
+  const hasActiveFilters = useMemo(
+    () =>
+      Array.from(new URLSearchParams(query).keys()).filter(
+        key => !ORDER_QUERY_ITEMS.includes(key),
+      ),
+    [query],
+  )
 
   return (
     <menu className="m-4 justify-between items-start flex text-white-100">
       <MenuItem
         path="filter"
         onIcon="/icon/filter=on.svg"
-        offIcon="/icon/filter=off.svg"
+        offIcon={
+          hasActiveFilters.length > 0
+            ? '/icon/filter=off-active.svg'
+            : '/icon/filter=off.svg'
+        }
         title="Filters"
       />
 
