@@ -124,6 +124,37 @@ const ImageBlock = ({
     : null
 }
 
+/* Match full links and relative paths */
+const regex = /^\[([\w\s\d]+)\]\(((?:\/|https?:\/\/)[\w\d./?=#]+)\)$/
+
+const LinkBlock = ({
+  attributes,
+  item,
+}: {
+  attributes: AttributeItem[]
+  item: RelistItem
+}) => {
+  const values = attributes
+    ?.map((attr: AttributeItem) => ({
+      ...attr,
+      itemValue: getAttributeValue(item[camelCase(attr.title)]),
+    }))
+    .filter(filterNonNullValues)
+
+  return values?.length > 0
+    ? values.map(it => {
+        const myMatch = it.itemValue.match(regex)
+
+        console.log(myMatch)
+        return (
+          <div key={it.title} className="text-accent">
+            <a href={myMatch?.[2] ?? '#'}>{myMatch?.[1]}</a>
+          </div>
+        )
+      })
+    : null
+}
+
 export default function List({ items: rawItems, attributes }: Props) {
   const searchParams = useSearchParams()
 
@@ -175,6 +206,7 @@ export default function List({ items: rawItems, attributes }: Props) {
           ))}
 
           <ImageBlock attributes={attributes[AttributeType.Imageurl]} item={item} />
+          <LinkBlock attributes={attributes[AttributeType.Link]} item={item} />
         </ItemList>
       ))}
     </>
