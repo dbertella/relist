@@ -77,18 +77,19 @@
   }
 
   .brutal-mode .border-wording-10 {
-    border-color: var(--ink);
+    border-color: rgb(var(--ink));
   }
   .brutal-mode .bg-level3 {
-    border-color: var(--ink);
+    border-color: rgb(var(--ink));
     border-width: 1px;
     background: transparent;
   }
   .brutal-mode .text-neon-100.bg-neon-10 {
-    border-color: var(--ink);
+    border-color: rgb(var(--ink));
     border-width: 1px;
     background: transparent;
     border-style: solid;
+    font-weight: bold;
   }
   .brutal-mode .mr-2.text-emphasis.text-sm {
     font-weight: bold;
@@ -96,7 +97,7 @@
   .brutal-mode h1,
   .brutal-mode h2,
   .brutal-mode h3 {
-    color: var(--ink);
+    color: rgb(var(--ink));
   }
   
 
