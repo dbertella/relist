@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 @layer base {
   :root {
     --radius: 0.625rem;
@@ -17,27 +18,30 @@
     --lillish: 184, 192, 248;
     --dark-lillish: 142, 156, 255;
     --green: 85, 243, 206;
+    --blue: 6, 6, 237;
 
     --white-inv: 0, 0, 0;
-    --black-inv: 255, 255, 255;
+    --black-inv: 255,255,255;
     --salmon-inv: 0, 107, 131;
     --yellow-inv: 15, 68, 255;
     --middle-blue-inv: 229, 216, 182;
-    --dark-blue-inv: 241, 230, 212;
+    --dark-blue-inv: 241,230, 212;
     --black-blue-inv: 249, 242, 231;
     --lillish-inv: 71, 63, 7;
     --dark-lillish-inv: 113, 99, 0;
     --green-inv: 170, 12, 49;
+    --blue-inv: 249, 249, 18;
 
+    
     /* original theme colors */
-    --paper: var(--white);
-    --ink: var(--black);
+    --paper: var(--black);
+    --ink: var(--white);
     --neon: var(--salmon);
     --action: var(--yellow);
     --gradient-top: var(--middle-blue);
     --gradient-bottom: var(--black-blue);
-    --level1: var(--black-blue);
-    --level2: var(--dark-blue);
+    --level2 : var(--dark-blue);
+    --level1 : var(--black-blue);
     --emphasis: var(--lillish);
     --wording: var(--dark-lillish);
     --highlight: var(--green);
@@ -45,48 +49,85 @@
 
   .warm-mode,
   .bright-mode {
-    --paper: var(--white-inv);
-    --ink: var(--black-inv);
+    --paper: var(--black-inv);
+    --ink: var(--white-inv);
     --neon: var(--salmon-inv);
     --action: var(--yellow-inv);
     --gradient-top: var(--middle-blue-inv);
     --gradient-bottom: var(--black-blue-inv);
-    --level2: var(--dark-blue-inv);
-    --level1: var(--black-blue-inv);
+    --level2 : var(--dark-blue-inv);
+    --level1 : var(--black-blue-inv);
     --emphasis: var(--lillish-inv);
     --wording: var(--dark-lillish-inv);
     --highlight: var(--green-inv);
   }
 
+  .brutal-mode {
+    --paper: var(--white);
+    --ink: var(--black-blue);
+    --neon: var(--black-blue);
+    --action: var(--blue);
+    --gradient-top: var(--white);
+    --gradient-bottom: var(--white);
+    --level2 : var(--white);
+    --level1 : var(--white);
+    --emphasis: var(--black-blue);
+    --wording: var(--black-blue);
+    --highlight: var(--yellow);
+  }
+
+  .brutal-mode .border-wording-10 {
+    border-color: var(--ink);
+  }
+  .brutal-mode .bg-level3 {
+    border-color: var(--ink);
+    border-width: 1px;
+    background: transparent;
+  }
+  .brutal-mode .text-neon-100.bg-neon-10 {
+    border-color: var(--ink);
+    border-width: 1px;
+    background: transparent;
+    border-style: solid;
+  }
+  .brutal-mode .mr-2.text-emphasis.text-sm {
+    font-weight: bold;
+  }
+  .brutal-mode h1,
+  .brutal-mode h2,
+  .brutal-mode h3 {
+    color: var(--ink);
+  }
+  
+
   * {
     @apply border-border;
   }
+  .icon-bg {
+    fill: red;
+  }
+  .icon-color {
+    fill: yellow;
+  }
 
-  html.bright-mode {
-    filter: hue-rotate(180deg);
+
+  .bright-mode {
+    filter: hue-rotate(180deg); 
   }
-  html.bright-mode img {
-    filter: hue-rotate(180deg);
+  .bright-mode img {
+    filter: hue-rotate(180deg); 
   }
-  html.bright-mode menu img,
-  html.warm-mode menu img {
-    filter: invert(1);
+  .bright-mode menu img,
+  .warm-mode menu img,
+  .brutal-mode menu img {
+    filter: invert(1) ; 
   }
 }
 
-/* add light-mode class to the <html> tag to activate it */
-html.light-mode {
-  filter: invert(1) hue-rotate(180deg);
-}
-html.light-mode img {
-  filter: invert(1) hue-rotate(180deg);
-}
-html.light-mode menu img {
-  filter: invert(0) hue-rotate(0deg);
-}
 
 @layer utilities {
   @variants responsive {
+
     /* Hide scrollbar for Chrome, Safari and Opera */
     .no-scrollbar::-webkit-scrollbar {
       display: none;
