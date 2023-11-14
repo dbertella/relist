@@ -67,8 +67,8 @@
     --ink: var(--black-blue);
     --neon: var(--black-blue);
     --action: var(--blue);
-    --gradient-top: var(--white);
-    --gradient-bottom: var(--white);
+    --gradient-top: var(--black-blue-inv);
+    --gradient-bottom: var(--black-blue-inv);
     --level2 : var(--white);
     --level1 : var(--black-blue-inv);
     --emphasis: var(--black-blue);
@@ -76,22 +76,23 @@
     --highlight: var(--yellow);
   }
 
-  .brutal-mode .border-wording-10 {
+
+  .brutal-mode .cards {
     border-color: rgb(var(--ink));
   }
-  .brutal-mode .bg-level3 {
+  .brutal-mode .innercard {
     border-color: rgb(var(--ink));
     border-width: 1px;
     background: transparent;
   }
-  .brutal-mode .text-neon-100.bg-neon-10 {
+  .brutal-mode .tags {
     border-color: rgb(var(--ink));
     border-width: 1px;
     background: transparent;
     border-style: solid;
     font-weight: bold;
   }
-  .brutal-mode .mr-2.text-emphasis.text-sm {
+  .brutal-mode .column-name {
     font-weight: bold;
   }
   .brutal-mode h1,
@@ -99,18 +100,13 @@
   .brutal-mode h3 {
     color: rgb(var(--ink));
   }
+  .brutal-mode .modals {border-top: 1px solid rgb(var(--black-blue))}
+  .brutal-mode .handles {boder-color: rgb(var(--level1))}
   
 
   * {
     @apply border-border;
   }
-  .icon-bg {
-    fill: red;
-  }
-  .icon-color {
-    fill: yellow;
-  }
-
 
   .bright-mode {
     filter: hue-rotate(180deg); 

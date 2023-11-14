@@ -36,7 +36,7 @@ export const Attribute = ({
 }: AttributeItem & { hideTitle?: boolean }) => (
   <>
     {!hideTitle && (
-      <span className="mb-1.5 mr-2 text-emphasis text-sm leading-normal">
+      <span className="column-name mb-1.5 mr-2 text-emphasis text-sm leading-normal">
         {rename || title}
       </span>
     )}

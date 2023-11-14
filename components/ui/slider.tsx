@@ -25,7 +25,7 @@ const Slider = React.forwardRef<
       {value?.map((_, i) => (
         <SliderPrimitive.Thumb
           key={i}
-          className="block h-4 w-4 rounded-full border-level2-100 border-[3px] bg-action-100 shadow"
+          className="handles block h-4 w-4 rounded-full border-level2-100 border-[3px] bg-action-100"
         />
       ))}
     </SliderPrimitive.Root>
