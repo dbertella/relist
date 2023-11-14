@@ -23,7 +23,7 @@ const FilterItem = ({ attribute }: { attribute: AttributeItem }) => {
 
   return (
     <div key={attribute.title} className="mb-10">
-      <div className="mb-2 flex justify-between">
+      <div className="mb-2 flex justify-between text-wording-100">
         <div>{value[0]}</div>
         <div>{attribute.rename || attribute.title}</div>
         <div>{value.at(-1)}</div>
