@@ -70,7 +70,7 @@
     --gradient-top: var(--white);
     --gradient-bottom: var(--white);
     --level2 : var(--white);
-    --level1 : var(--white);
+    --level1 : var(--black-blue-inv);
     --emphasis: var(--black-blue);
     --wording: var(--black-blue);
     --highlight: var(--yellow);
