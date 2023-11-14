@@ -18,6 +18,7 @@
     --lillish: 184, 192, 248;
     --dark-lillish: 142, 156, 255;
     --green: 85, 243, 206;
+    --blue: 6, 6, 237;
 
     --white-inv: 0, 0, 0;
     --black-inv: 255,255,255;
@@ -29,6 +30,7 @@
     --lillish-inv: 71, 63, 7;
     --dark-lillish-inv: 113, 99, 0;
     --green-inv: 170, 12, 49;
+    --blue-inv: 249, 249, 18;
 
     
     /* original theme colors */
@@ -64,7 +66,7 @@
     --paper: var(--white);
     --ink: var(--black-blue);
     --neon: var(--black-blue);
-    --action: var(--salmon);
+    --action: var(--blue);
     --gradient-top: var(--white);
     --gradient-bottom: var(--white);
     --level2 : var(--white);
@@ -74,6 +76,28 @@
     --highlight: var(--yellow);
   }
 
+  .brutal-mode .border-wording-10 {
+    border-color: var(--ink);
+  }
+  .brutal-mode .bg-level3 {
+    border-color: var(--ink);
+    border-width: 1px;
+    background: transparent;
+  }
+  .brutal-mode .text-neon-100.bg-neon-10 {
+    border-color: var(--ink);
+    border-width: 1px;
+    background: transparent;
+    border-style: solid;
+  }
+  .brutal-mode .mr-2.text-emphasis.text-sm {
+    font-weight: bold;
+  }
+  .brutal-mode h1,
+  .brutal-mode h2,
+  .brutal-mode h3 {
+    color: var(--ink);
+  }
   
 
   * {
@@ -87,17 +111,17 @@
   }
 
 
-  html.bright-mode {
+  .bright-mode {
     filter: hue-rotate(180deg); 
   }
-  html.bright-mode img {
+  .bright-mode img {
     filter: hue-rotate(180deg); 
   }
-  html.bright-mode menu img,
-  html.warm-mode menu img,
-  html.brutal-mode menu img {
+  .bright-mode menu img,
+  .warm-mode menu img,
+  .brutal-mode menu img {
     filter: invert(1) ; 
-  } 
+  }
 }
 
 
