@@ -144,8 +144,6 @@ const LinkBlock = ({
   return values?.length > 0
     ? values.map(it => {
         const myMatch = it.itemValue.match(regex)
-
-        console.log(myMatch)
         return (
           <div key={it.title} className="text-accent">
             <a href={myMatch?.[2] ?? '#'}>{myMatch?.[1]}</a>
