@@ -4,7 +4,9 @@
 
 @layer base {
   :root {
-    /* my colors */
+    --radius: 0.625rem;
+
+    /* application colors */
     --white: 255, 255, 255;
     --black: 0, 0, 0;
     --salmon: 255, 148, 124;
@@ -14,75 +16,38 @@
     --black-blue: 6, 13, 24;
     --lillish: 184, 192, 248;
     --dark-lillish: 142, 156, 255;
-    --alternative-lillish: 145, 155, 207;
     --green: 85, 243, 206;
 
-    --background: 216, 59%, 6%;
-    --foreground: 226, 31%, 64%;
-
-    --card: 218, 50%, 11%;
-    --innercard: 230, 39%, 69%, 0.05;
-    --card-foreground: 233, 82%, 85%;
-
-    --popover: 222, 49%, 19%;
-    --popover-foreground: 233, 82%, 85%;
-
-    --primary: 47, 100%, 47%;
-    --primary-foreground: 47, 100%, 47%;
-
-    --secondary: rgba(240, 187, 0, 0.1);
-    --secondary-foreground: 47, 100%, 47%;
-
-    --muted: 216, 59%, 6%;
-    --muted-foreground: 0 0% 100%;
-
-    --accent: 166, 87%, 64%, 1;
-    --accent-foreground: 166, 87%, 64%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 60 9.1% 97.8%;
-
-    --border: 233, 82%, 85%;
-    --input: 233, 82%, 85%;
-    --ring: 24 5.7% 82.9%;
-
-    --radius: 0.625rem;
-
-    --card-shadow: 0 0 0 1px rgba(198, 204, 248, 0.18);
+    /* original theme colors */
+    --paper: var(--white);
+    --ink: var(--black);
+    --neon: var(--salmon);
+    --action: var(--yellow);
+    --gradient-top: var(--middle-blue);
+    --gradient-bottom: var(--black-blue);
+    --level2: var(--dark-blue);
+    --level1: var(--black-blue);
+    --emphasis: var(--lillish);
+    --wording: var(--dark-lillish);
+    --highlight: var(--green);
   }
 
   .dark {
-    --background: 0 0% 100%;
-    --foreground: 20 14.3% 4.1%;
-
-    --card: 0 0% 100%;
-    --card-foreground: 20 14.3% 4.1%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 20 14.3% 4.1%;
-
-    --primary: 24 9.8% 10%;
-    --primary-foreground: 60 9.1% 97.8%;
-
-    --secondary: 60 4.8% 95.9%;
-    --secondary-foreground: 24 9.8% 10%;
-
-    --muted: 60 4.8% 95.9%;
-    --muted-foreground: 25 5.3% 44.7%;
-
-    --accent: 60 4.8% 95.9%;
-    --accent-foreground: 24 9.8% 10%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 60 9.1% 97.8%;
-
-    --border: 20 5.9% 90%;
-    --input: 20 5.9% 90%;
-    --ring: 20 14.3% 4.1%;
   }
 
   * {
     @apply border-border;
+  }
+
+  /* add light-mode class to the <html> tag to activate it */
+  html.light-mode {
+    filter: invert(1) hue-rotate(180deg);
+  }
+  html.light-mode img {
+    filter: invert(1) hue-rotate(180deg);
+  }
+  html.light-mode menu img {
+    filter: invert(0) hue-rotate(0deg);
   }
 }
 
@@ -92,7 +57,6 @@
     .no-scrollbar::-webkit-scrollbar {
       display: none;
     }
-
     /* Hide scrollbar for IE, Edge and Firefox */
     .no-scrollbar {
       -ms-overflow-style: none;
