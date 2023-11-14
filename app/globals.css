@@ -18,7 +18,17 @@
     --dark-lillish: 142, 156, 255;
     --green: 85, 243, 206;
 
-    
+    --white-inv: 0, 0, 0;
+    --black-inv: 255, 255, 255;
+    --salmon-inv: 0, 107, 131;
+    --yellow-inv: 15, 68, 255;
+    --middle-blue-inv: 229, 216, 182;
+    --dark-blue-inv: 241, 230, 212;
+    --black-blue-inv: 249, 242, 231;
+    --lillish-inv: 71, 63, 7;
+    --dark-lillish-inv: 113, 99, 0;
+    --green-inv: 170, 12, 49;
+
     /* original theme colors */
     --paper: var(--white);
     --ink: var(--black);
@@ -33,22 +43,34 @@
     --highlight: var(--green);
   }
 
-  .dark {
+  .warm-mode,
+  .bright-mode {
+    --paper: var(--white-inv);
+    --ink: var(--black-inv);
+    --neon: var(--salmon-inv);
+    --action: var(--yellow-inv);
+    --gradient-top: var(--middle-blue-inv);
+    --gradient-bottom: var(--black-blue-inv);
+    --level2: var(--dark-blue-inv);
+    --level1: var(--black-blue-inv);
+    --emphasis: var(--lillish-inv);
+    --wording: var(--dark-lillish-inv);
+    --highlight: var(--green-inv);
   }
 
   * {
     @apply border-border;
   }
 
-  /* add light-mode class to the <html> tag to activate it */
-  html.light-mode {
-    filter: invert(1) hue-rotate(180deg); 
+  html.bright-mode {
+    filter: hue-rotate(180deg);
   }
-  html.light-mode img {
-    filter: invert(1) hue-rotate(180deg); 
+  html.bright-mode img {
+    filter: hue-rotate(180deg);
   }
-  html.light-mode menu img {
-    filter: invert(0) hue-rotate(0deg); 
+  html.bright-mode menu img,
+  html.warm-mode menu img {
+    filter: invert(1);
   }
 }
 

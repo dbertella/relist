@@ -61,7 +61,7 @@ module.exports = {
           20: 'rgb(var(--level2),0.2)',
           10: 'rgb(var(--level2),0.1)',
         },
-        level3: 'rgb(var(--paper),0.05)',
+        level3: 'rgb(var(--wording),0.1)',
         highlight: {
           100: 'rgb(var(--highlight),1)',
           75: 'rgb(var(--highlight),0.75)',
@@ -77,7 +77,13 @@ module.exports = {
           10: 'rgb(var(--neon),0.1)',
         },
         emphasis: 'rgb(var(--emphasis),1)',
-        wording: 'rgb(var(--wording),1)',
+        wording: {
+          100: 'rgb(var(--wording),1)',
+          75: 'rgb(var(--wording),0.75)',
+          50: 'rgb(var(--wording),0.5)',
+          20: 'rgb(var(--wording),0.2)',
+          10: 'rgb(var(--wording),0.1)',
+        },
         track: 'rgb(var(--wording),0.1)',
         gradient: {
           top: 'rgb(var(--gradient-top),1)',
@@ -102,6 +108,15 @@ module.exports = {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 6px)',
+      },
+      borderWidth: {
+        DEFAULT: '1px',
+        0: '0',
+        2: '2px',
+        3: '3px',
+        4: '4px',
+        6: '6px',
+        8: '8px',
       },
       keyframes: {
         'accordion-down': {
