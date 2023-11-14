@@ -27,7 +27,7 @@ export function SortingForm({ attributes }: Props) {
     useQueryString()
   return (
     <>
-      <div className="grid justify-items-end">
+      <div className="grid justify-items-end my-2">
         <Link
           href={{
             pathname: `/${params.sheetId}`,
@@ -46,7 +46,7 @@ export function SortingForm({ attributes }: Props) {
           )
         }
         defaultValue={searchParams.get(OrderQueryItem.OrderBy) ?? undefined}
-        className="flex flex-col space-y-1"
+        className="flex flex-col space-y-2"
       >
         {attributes.map(attribute => (
           <label className="flex items-center space-x-3 space-y-0" key={attribute.title}>

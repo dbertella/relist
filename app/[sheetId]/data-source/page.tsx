@@ -2,7 +2,7 @@ import { LinkToRelist } from '@/app/LinkToRelist'
 
 export default async function Home() {
   return (
-    <main className="max-w-3xl m-auto p-6 bg-gradient-to-b from-gradient-top to-gradient-bottom">
+    <main className="modals max-w-3xl m-auto p-6 bg-gradient-to-b from-gradient-top to-gradient-bottom">
       <div className="">
         <LinkToRelist />
       </div>

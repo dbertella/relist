@@ -8,7 +8,7 @@ export default async function FilterComponent({ params }: PageProps) {
 
   const attributeMap = groupBy(meta, 'type')
   return (
-    <main className="max-w-3xl m-auto p-6 bg-gradient-to-b from-gradient-top to-gradient-bottom">
+    <main className="modals max-w-3xl m-auto p-6 bg-gradient-to-b from-gradient-top to-gradient-bottom">
       <FilteringForm
         numbers={attributeMap.number}
         ranges={attributeMap.range}

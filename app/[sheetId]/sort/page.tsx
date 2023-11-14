@@ -8,7 +8,7 @@ export default async function SortComponent({ params }: PageProps) {
   const attributes =
     meta.filter(it => ['number', 'range', 'text'].includes(it.type)) ?? []
   return (
-    <main className="max-w-3xl m-auto p-6 bg-gradient-to-b from-gradient-top to-gradient-bottom">
+    <main className="modals max-w-3xl m-auto p-6 bg-gradient-to-b from-gradient-top to-gradient-bottom">
       <SortingForm attributes={attributes} />
     </main>
   )
