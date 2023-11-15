@@ -111,7 +111,7 @@ const ImageBlock = ({
     ? values.map(it => (
         <div
           key={it.title}
-          className="h-50 inline-flex overflow-x-scroll no-scrollbar scrolling-touch scroll-smooth"
+          className="gallery-box h-50 inline-flex overflow-x-scroll no-scrollbar scrolling-touch scroll-smooth"
         >
           {it.itemValue
             .split('\n')

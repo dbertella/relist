@@ -19,6 +19,9 @@
     --dark-lillish: 142, 156, 255;
     --green: 85, 243, 206;
     --blue: 6, 6, 237;
+    --violet: 128,0, 255;
+    --light-grey: 245, 245, 245;
+    --medium-grey: 110, 122, 134;
 
     --white-inv: 0, 0, 0;
     --black-inv: 255,255,255;
@@ -31,7 +34,11 @@
     --dark-lillish-inv: 113, 99, 0;
     --green-inv: 170, 12, 49;
     --blue-inv: 249, 249, 18;
-
+    --violet-inv: 127, 255, 0;
+    --light-grey-inv: 10, 10, 10;
+    --medium-grey-inv: 145, 133, 121;
+    
+    
     
     /* original theme colors */
     --paper: var(--black);
@@ -46,7 +53,7 @@
     --wording: var(--dark-lillish);
     --highlight: var(--green);
   }
-
+  
   .warm-mode,
   .bright-mode {
     --paper: var(--black-inv);
@@ -60,6 +67,32 @@
     --emphasis: var(--lillish-inv);
     --wording: var(--dark-lillish-inv);
     --highlight: var(--green-inv);
+  }
+  
+  .neutral-mode {
+    --paper: var(--white);
+    --ink: var(--black);
+    --neon: var(--medium-grey);
+    --action: var(--violet);
+    --gradient-top: var(--white);
+    --gradient-bottom: var(--light-grey);
+    --level2 : var(--white);
+    --level1 : var(--light-grey);
+    --emphasis: var(--medium-grey);
+    --wording: var(--black);
+    --highlight: var(--green);
+  }
+  .neutral-mode h1,
+  .neutral-mode h2,
+  .neutral-mode h3 { color: rgb(var(--black)) }
+  .neutral-mode .modals { border-radius: 12px; }
+  .neutral-mode .tags { background-color: rgb(var(--neon),0.1) }
+  .neutral-mode .cards { border: none; }
+  .neutral-mode .innercard { 
+    background: none;
+    border-radius: 0px;
+    border-top: 2px solid rgb(var(--light-grey));
+    border-bottom: 2px solid rgb(var(--light-grey));
   }
 
   .brutal-mode {
@@ -75,8 +108,8 @@
     --wording: var(--black-blue);
     --highlight: var(--yellow);
   }
-
-
+  
+  
   .brutal-mode .cards {
     border-color: rgb(var(--ink));
   }
@@ -103,22 +136,25 @@
   .brutal-mode .modals {border-top: 1px solid rgb(var(--black-blue))}
   .brutal-mode .handles {boder-color: rgb(var(--level1))}
   
-
-  * {
-    @apply border-border;
-  }
-
+  
   .bright-mode {
-    filter: hue-rotate(180deg); 
+    filter: hue-rotate(1100deg); 
   }
   .bright-mode img {
     filter: hue-rotate(180deg); 
   }
   .bright-mode menu img,
   .warm-mode menu img,
-  .brutal-mode menu img {
+  .brutal-mode menu img,
+  .neutral-mode menu img {
     filter: invert(1) ; 
   }
+
+  * {
+    @apply border-border;
+  }
+  .innercard span {margin-right: 0;}
+
 }
 
 

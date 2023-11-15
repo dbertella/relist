@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className="brutal-mode bg-level1-100 text--100">
+    <html lang="en" className="neutral-mode bg-level1-100 text--100">
       <body className={ruda.className}>{children}</body>
     </html>
   )
