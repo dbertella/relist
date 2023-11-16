@@ -14,7 +14,7 @@ import { orderBy } from 'lodash'
 import { SEPARATOR } from '@/lib/constants'
 import { RelistItem } from '@/lib/relistData'
 import { match, P } from 'ts-pattern'
-import { ORDER_QUERY_ITEMS } from './sort/SortingForm'
+import { PERSISTED_QUERY_ITEMS } from './sort/SortingForm'
 
 type Props = {
   items: RelistItem[]
@@ -38,7 +38,7 @@ const useFilterItems = (items: RelistItem[]) => {
     const toBeFiltered: boolean[] = []
 
     searchParams.forEach((value: string, key: string) => {
-      if (ORDER_QUERY_ITEMS.includes(key)) {
+      if (PERSISTED_QUERY_ITEMS.includes(key)) {
         return
       }
       const [min, max] = value.split(SEPARATOR).map(it => Number(it))

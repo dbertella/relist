@@ -8,6 +8,7 @@ import Link from 'next/link'
 import { Label } from '@/components/ui/label'
 import { useQueryString } from '@/lib/utils'
 import { camelCase } from 'lodash'
+import { PARAM_KEY } from '@/app/manifest'
 
 const OrderEnum = z.enum(['asc', 'desc'])
 
@@ -16,7 +17,7 @@ export const OrderQueryItem = {
   Sort: 'sort',
 }
 
-export const ORDER_QUERY_ITEMS = Object.values(OrderQueryItem)
+export const PERSISTED_QUERY_ITEMS = [...Object.values(OrderQueryItem), PARAM_KEY]
 
 type Props = {
   attributes: AttributeItem[]

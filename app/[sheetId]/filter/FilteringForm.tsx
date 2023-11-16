@@ -6,7 +6,7 @@ import { useQueryString } from '@/lib/utils'
 import { Slider } from '@/components/ui/slider'
 import { SEPARATOR } from '@/lib/constants'
 import { camelCase } from 'lodash'
-import { ORDER_QUERY_ITEMS } from '../sort/SortingForm'
+import { PERSISTED_QUERY_ITEMS } from '../sort/SortingForm'
 
 type Props = {
   numbers: AttributeItem[]
@@ -49,8 +49,8 @@ const FilterItem = ({ attribute }: { attribute: AttributeItem }) => {
 export function FilteringForm({ numbers = [], ranges = [], texts = [] }: Props) {
   const { params, searchParams, query, createQueryString } = useQueryString()
 
-  const sortingParams = Array.from(searchParams.entries()).filter(it =>
-    ORDER_QUERY_ITEMS.includes(it[0]),
+  const persistentParams = Array.from(searchParams.entries()).filter(it =>
+    PERSISTED_QUERY_ITEMS.includes(it[0]),
   )
   return (
     <>
@@ -58,7 +58,7 @@ export function FilteringForm({ numbers = [], ranges = [], texts = [] }: Props) 
         <Link
           href={{
             pathname: `/${params.sheetId}`,
-            query: new URLSearchParams(sortingParams).toString(),
+            query: new URLSearchParams(persistentParams).toString(),
           }}
           className="text-action-100 align-self-right"
         >

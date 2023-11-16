@@ -5,7 +5,7 @@ import { Toggle } from '@radix-ui/react-toggle'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useMemo } from 'react'
-import { ORDER_QUERY_ITEMS } from './sort/SortingForm'
+import { PERSISTED_QUERY_ITEMS } from './sort/SortingForm'
 
 const MenuItem = ({
   path,
@@ -34,7 +34,7 @@ export const NavBar = () => {
   const hasActiveFilters = useMemo(
     () =>
       Array.from(new URLSearchParams(query).keys()).filter(
-        key => !ORDER_QUERY_ITEMS.includes(key),
+        key => !PERSISTED_QUERY_ITEMS.includes(key),
       ),
     [query],
   )
