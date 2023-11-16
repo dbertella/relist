@@ -7,6 +7,7 @@ import { Slider } from '@/components/ui/slider'
 import { SEPARATOR } from '@/lib/constants'
 import { camelCase } from 'lodash'
 import { PERSISTED_QUERY_ITEMS } from '../sort/SortingForm'
+import { useState } from 'react'
 
 type Props = {
   numbers: AttributeItem[]
@@ -17,10 +18,12 @@ type Props = {
 const FilterItem = ({ attribute }: { attribute: AttributeItem }) => {
   const { searchParams, router, pathname, createQueryString } = useQueryString()
 
-  const value = searchParams
-    .get(camelCase(attribute.title))
-    ?.split(SEPARATOR)
-    .map(it => Number(it)) || [attribute.min, attribute.max]
+  const [value, setValue] = useState<number[]>(
+    searchParams
+      .get(camelCase(attribute.title))
+      ?.split(SEPARATOR)
+      .map(it => Number(it)) || [attribute.min, attribute.max],
+  )
 
   return (
     <div key={attribute.title} className="mb-10">
@@ -34,24 +37,26 @@ const FilterItem = ({ attribute }: { attribute: AttributeItem }) => {
         max={attribute.max}
         defaultValue={value}
         step={1}
-        onValueChange={value =>
+        onValueChange={newValue => {
+          setValue(newValue)
           router.replace(
             pathname +
               '?' +
-              createQueryString(camelCase(attribute.title), value.join(SEPARATOR)),
+              createQueryString(camelCase(attribute.title), newValue.join(SEPARATOR)),
           )
-        }
+        }}
       />
     </div>
   )
 }
 
 export function FilteringForm({ numbers = [], ranges = [], texts = [] }: Props) {
-  const { params, searchParams, query, createQueryString } = useQueryString()
+  const { params, searchParams, query } = useQueryString()
 
   const persistentParams = Array.from(searchParams.entries()).filter(it =>
     PERSISTED_QUERY_ITEMS.includes(it[0]),
   )
+
   return (
     <>
       <div className="flex justify-between mb-10">
