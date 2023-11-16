@@ -13,8 +13,12 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={cn(Theme.Brutal, 'bg-level1-100 text--100')}>
-      <body className={ruda.className}>{children}</body>
+    <html
+      lang="en"
+      data-theme={Theme.Neutral}
+      className={cn('bg-level1-100 text--100', ruda.className)}
+    >
+      <body>{children}</body>
     </html>
   )
 }
