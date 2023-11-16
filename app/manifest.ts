@@ -1,12 +1,14 @@
 import { MetadataRoute } from 'next'
 
+export const PARAM_KEY = 'homescreen'
+
 export default function manifest(): MetadataRoute.Manifest {
   return {
     name: 'Relist',
     short_name: 'Relist',
     description: 'List generated with ❤️',
     start_url: '/',
-    id: '?homescreen=1',
+    id: `?${PARAM_KEY}=1`,
     display: 'standalone',
     background_color: 'rgb(14, 25, 43)',
     theme_color: 'rgb(26, 39, 73)',
