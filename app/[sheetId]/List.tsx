@@ -144,8 +144,6 @@ const LinkBlock = ({
   return values?.length > 0
     ? values.map(it => {
         const myMatch = it.itemValue.match(regex)
-
-        console.log(myMatch)
         return (
           <div key={it.title} className="text-accent">
             <a href={myMatch?.[2] ?? '#'}>{myMatch?.[1]}</a>
@@ -172,10 +170,11 @@ export default function List({ items: rawItems, attributes }: Props) {
         <ItemList
           key={`${item[camelCase(titleAttrs[0].title)]}`}
           title={titleAttrs?.map(attr => item[camelCase(attr.title)]) as string[]}
-          footer={tagsAttrs?.flatMap(attr =>
-            (item[camelCase(attr.title)] as string)
-              ?.split(',')
-              ?.map(tag => <Badge key={tag}>{tag}</Badge>),
+          footer={tagsAttrs?.flatMap(
+            attr =>
+              (item[camelCase(attr.title)] as string)
+                ?.split(',')
+                ?.map(tag => <Badge key={tag}>{tag}</Badge>),
           )}
         >
           <PrimaryBlock item={item} attributes={attributes.primary} />

@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @layer base {
   :root {
     --radius: 0.625rem;
@@ -19,16 +18,16 @@
     --dark-lillish: 142, 156, 255;
     --green: 85, 243, 206;
     --blue: 6, 6, 237;
-    --violet: 128,0, 255;
+    --violet: 128, 0, 255;
     --light-grey: 245, 245, 245;
     --medium-grey: 110, 122, 134;
 
     --white-inv: 0, 0, 0;
-    --black-inv: 255,255,255;
+    --black-inv: 255, 255, 255;
     --salmon-inv: 0, 107, 131;
     --yellow-inv: 15, 68, 255;
     --middle-blue-inv: 229, 216, 182;
-    --dark-blue-inv: 241,230, 212;
+    --dark-blue-inv: 241, 230, 212;
     --black-blue-inv: 249, 242, 231;
     --lillish-inv: 71, 63, 7;
     --dark-lillish-inv: 113, 99, 0;
@@ -37,9 +36,7 @@
     --violet-inv: 127, 255, 0;
     --light-grey-inv: 10, 10, 10;
     --medium-grey-inv: 145, 133, 121;
-    
-    
-    
+
     /* original theme colors */
     --paper: var(--black);
     --ink: var(--white);
@@ -47,120 +44,128 @@
     --action: var(--yellow);
     --gradient-top: var(--middle-blue);
     --gradient-bottom: var(--black-blue);
-    --level2 : var(--dark-blue);
-    --level1 : var(--black-blue);
+    --level2: var(--dark-blue);
+    --level1: var(--black-blue);
     --emphasis: var(--lillish);
     --wording: var(--dark-lillish);
     --highlight: var(--green);
   }
-  
-  .warm-mode,
-  .bright-mode {
+
+  html[data-theme='warm-mode'],
+  html[data-theme='bright-mode'] {
     --paper: var(--black-inv);
     --ink: var(--white-inv);
     --neon: var(--salmon-inv);
     --action: var(--yellow-inv);
     --gradient-top: var(--middle-blue-inv);
     --gradient-bottom: var(--black-blue-inv);
-    --level2 : var(--dark-blue-inv);
-    --level1 : var(--black-blue-inv);
+    --level2: var(--dark-blue-inv);
+    --level1: var(--black-blue-inv);
     --emphasis: var(--lillish-inv);
     --wording: var(--dark-lillish-inv);
     --highlight: var(--green-inv);
   }
-  
-  .neutral-mode {
+
+  html[data-theme='neutral-mode'] {
     --paper: var(--white);
     --ink: var(--black);
     --neon: var(--medium-grey);
     --action: var(--violet);
     --gradient-top: var(--white);
     --gradient-bottom: var(--light-grey);
-    --level2 : var(--white);
-    --level1 : var(--light-grey);
+    --level2: var(--white);
+    --level1: var(--light-grey);
     --emphasis: var(--medium-grey);
     --wording: var(--black);
     --highlight: var(--green);
   }
-  .neutral-mode h1,
-  .neutral-mode h2,
-  .neutral-mode h3 { color: rgb(var(--black)) }
-  .neutral-mode .modals { border-radius: 12px; }
-  .neutral-mode .tags { background-color: rgb(var(--neon),0.1) }
-  .neutral-mode .cards { border: none; }
-  .neutral-mode .innercard { 
+  html[data-theme='neutral-mode'] h1,
+  html[data-theme='neutral-mode'] h2,
+  html[data-theme='neutral-mode'] h3 {
+    color: rgb(var(--black));
+  }
+  html[data-theme='neutral-mode'] .modals {
+    border-radius: 12px;
+  }
+  html[data-theme='neutral-mode'] .tags {
+    background-color: rgb(var(--neon), 0.1);
+  }
+  html[data-theme='neutral-mode'] .cards {
+    border: none;
+  }
+  html[data-theme='neutral-mode'] .innercard {
     background: none;
     border-radius: 0px;
     border-top: 2px solid rgb(var(--light-grey));
     border-bottom: 2px solid rgb(var(--light-grey));
   }
 
-  .brutal-mode {
+  html[data-theme='brutal-mode'] {
     --paper: var(--white);
     --ink: var(--black-blue);
     --neon: var(--black-blue);
     --action: var(--blue);
     --gradient-top: var(--black-blue-inv);
     --gradient-bottom: var(--black-blue-inv);
-    --level2 : var(--white);
-    --level1 : var(--black-blue-inv);
+    --level2: var(--white);
+    --level1: var(--black-blue-inv);
     --emphasis: var(--black-blue);
     --wording: var(--black-blue);
     --highlight: var(--yellow);
   }
-  
-  
-  .brutal-mode .cards {
+  html[data-theme='brutal-mode'] .cards {
     border-color: rgb(var(--ink));
   }
-  .brutal-mode .innercard {
+  html[data-theme='brutal-mode'] .innercard {
     border-color: rgb(var(--ink));
     border-width: 1px;
     background: transparent;
   }
-  .brutal-mode .tags {
+  html[data-theme='brutal-mode'] .tags {
     border-color: rgb(var(--ink));
     border-width: 1px;
     background: transparent;
     border-style: solid;
     font-weight: bold;
   }
-  .brutal-mode .column-name {
+  html[data-theme='brutal-mode'] .column-name {
     font-weight: bold;
   }
-  .brutal-mode h1,
-  .brutal-mode h2,
-  .brutal-mode h3 {
+  html[data-theme='brutal-mode'] h1,
+  html[data-theme='brutal-mode'] h2,
+  html[data-theme='brutal-mode'] h3 {
     color: rgb(var(--ink));
   }
-  .brutal-mode .modals {border-top: 1px solid rgb(var(--black-blue))}
-  .brutal-mode .handles {boder-color: rgb(var(--level1))}
-  
-  
-  .bright-mode {
-    filter: hue-rotate(1100deg); 
+  html[data-theme='brutal-mode'] .modals {
+    border-top: 1px solid rgb(var(--black-blue));
   }
-  .bright-mode img {
-    filter: hue-rotate(180deg); 
+  html[data-theme='brutal-mode'] .handles {
+    border-color: rgb(var(--level1));
   }
-  .bright-mode menu img,
+
+  html[data-theme='bright-mode'] {
+    filter: hue-rotate(1100deg);
+  }
+  html[data-theme='bright-mode'] img {
+    filter: hue-rotate(180deg);
+  }
+  html[data-theme='bright-mode'] menu img,
   .warm-mode menu img,
-  .brutal-mode menu img,
-  .neutral-mode menu img {
-    filter: invert(1) ; 
+  html[data-theme='brutal-mode'] menu img,
+  html[data-theme='neutral-mode'] menu img {
+    filter: invert(1);
   }
 
   * {
     @apply border-border;
   }
-  .innercard span {margin-right: 0;}
-
+  .innercard span {
+    margin-right: 0;
+  }
 }
-
 
 @layer utilities {
   @variants responsive {
-
     /* Hide scrollbar for Chrome, Safari and Opera */
     .no-scrollbar::-webkit-scrollbar {
       display: none;
