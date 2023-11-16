@@ -24,7 +24,12 @@ type Props = {
 }
 
 export function SortingForm({ attributes }: Props) {
-  const { params, searchParams, router, pathname, createQueryString } = useQueryString()
+  const { params, query, searchParams, router, pathname, createQueryString } =
+    useQueryString()
+
+  const defaultValue = camelCase(attributes[0].title)
+
+  console.log({ query })
 
   return (
     <>
@@ -32,6 +37,7 @@ export function SortingForm({ attributes }: Props) {
         <Link
           href={{
             pathname: `/${params.sheetId}`,
+            query: query || createQueryString(OrderQueryItem.Sort, defaultValue),
           }}
           className="text-action-100 align-self-right"
         >
@@ -45,9 +51,7 @@ export function SortingForm({ attributes }: Props) {
             pathname + '?' + createQueryString(OrderQueryItem.OrderBy, value),
           )
         }
-        defaultValue={
-          searchParams.get(OrderQueryItem.OrderBy) ?? camelCase(attributes[0].title)
-        }
+        defaultValue={searchParams.get(OrderQueryItem.OrderBy) ?? defaultValue}
         className="flex flex-col space-y-2"
       >
         {attributes.map(attribute => (
