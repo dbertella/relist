@@ -23,15 +23,14 @@ type Props = {
 }
 
 export function SortingForm({ attributes }: Props) {
-  const { params, searchParams, query, router, pathname, createQueryString } =
-    useQueryString()
+  const { params, searchParams, router, pathname, createQueryString } = useQueryString()
+
   return (
     <>
       <div className="grid justify-items-end my-2">
         <Link
           href={{
             pathname: `/${params.sheetId}`,
-            query: query,
           }}
           className="text-action-100 align-self-right"
         >
@@ -45,12 +44,14 @@ export function SortingForm({ attributes }: Props) {
             pathname + '?' + createQueryString(OrderQueryItem.OrderBy, value),
           )
         }
-        defaultValue={searchParams.get(OrderQueryItem.OrderBy) ?? undefined}
+        defaultValue={
+          searchParams.get(OrderQueryItem.OrderBy) ?? camelCase(attributes[0].title)
+        }
         className="flex flex-col space-y-2"
       >
         {attributes.map(attribute => (
           <label className="flex items-center space-x-3 space-y-0" key={attribute.title}>
-            <RadioGroupItem value={camelCase(attribute.title)} />
+            <RadioGroupItem value={camelCase(attribute.title)} id={attribute.title} />
             <Label htmlFor={attribute.title}>{attribute.rename || attribute.title}</Label>
           </label>
         ))}
@@ -62,14 +63,14 @@ export function SortingForm({ attributes }: Props) {
         onValueChange={value =>
           router.replace(pathname + '?' + createQueryString(OrderQueryItem.Sort, value))
         }
-        defaultValue={searchParams.get(OrderQueryItem.Sort) ?? undefined}
+        defaultValue={searchParams.get(OrderQueryItem.Sort) ?? OrderEnum.options[0]}
         className="flex flex-col space-y-1"
       >
         {OrderEnum.options.map(it => (
-          <label className="flex items-center space-x-3 space-y-0" key={it}>
-            <RadioGroupItem value={camelCase(it)} />
+          <div className="flex items-center space-x-3 space-y-0" key={it}>
+            <RadioGroupItem value={camelCase(it)} id={it} />
             <Label htmlFor={it}>{it}</Label>
-          </label>
+          </div>
         ))}
       </RadioGroup>
     </>

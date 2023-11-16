@@ -6,6 +6,7 @@ import { useQueryString } from '@/lib/utils'
 import { Slider } from '@/components/ui/slider'
 import { SEPARATOR } from '@/lib/constants'
 import { camelCase } from 'lodash'
+import { ORDER_QUERY_ITEMS } from '../sort/SortingForm'
 
 type Props = {
   numbers: AttributeItem[]
@@ -46,14 +47,18 @@ const FilterItem = ({ attribute }: { attribute: AttributeItem }) => {
 }
 
 export function FilteringForm({ numbers = [], ranges = [], texts = [] }: Props) {
-  const { params, searchParams, query, router, pathname, createQueryString } =
-    useQueryString()
+  const { params, searchParams, query, createQueryString } = useQueryString()
+
+  const sortingParams = Array.from(searchParams.entries()).filter(it =>
+    ORDER_QUERY_ITEMS.includes(it[0]),
+  )
   return (
     <>
       <div className="flex justify-between mb-10">
         <Link
           href={{
             pathname: `/${params.sheetId}`,
+            query: new URLSearchParams(sortingParams).toString(),
           }}
           className="text-action-100 align-self-right"
         >
