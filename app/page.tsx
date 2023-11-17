@@ -2,7 +2,7 @@ import { LinkToRelist } from './LinkToRelist'
 
 export default async function Home() {
   return (
-    <main className="max-w-md m-auto px-4 leading-normal">
+    <main className="max-w-2xl m-auto px-4 leading-normal">
       <div className="grid w-full max-w-sm items-center gap-1.5">
         <LinkToRelist />
       </div>

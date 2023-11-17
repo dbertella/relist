@@ -55,9 +55,14 @@ export function SortingForm({ attributes }: Props) {
         className="flex flex-col space-y-2"
       >
         {attributes.map(attribute => (
-          <label className="flex items-center space-x-3 space-y-0" key={attribute.title}>
+          <label
+            className="cursor-pointer hover:bg-level1-75 flex items-center space-x-3 space-y-0"
+            key={attribute.title}
+          >
             <RadioGroupItem value={camelCase(attribute.title)} id={attribute.title} />
-            <Label htmlFor={attribute.title}>{attribute.rename || attribute.title}</Label>
+            <Label className="cursor-pointer" htmlFor={attribute.title}>
+              {attribute.rename || attribute.title}
+            </Label>
           </label>
         ))}
       </RadioGroup>
@@ -72,10 +77,15 @@ export function SortingForm({ attributes }: Props) {
         className="flex flex-col space-y-1"
       >
         {OrderEnum.options.map(it => (
-          <div className="flex items-center space-x-3 space-y-0" key={it}>
+          <label
+            className="cursor-pointer hover:bg-level1-75 flex items-center space-x-3 space-y-0"
+            key={it}
+          >
             <RadioGroupItem value={camelCase(it)} id={it} />
-            <Label htmlFor={it}>{it}</Label>
-          </div>
+            <Label className="cursor-pointer" htmlFor={it}>
+              {it}
+            </Label>
+          </label>
         ))}
       </RadioGroup>
     </>

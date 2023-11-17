@@ -16,7 +16,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html
       lang="en"
       data-theme={Theme.Neutral}
-      className={cn('bg-level1-100 text--100', ruda.className)}
+      className={cn(
+        'bg-level1-100 text--100 origin-top sm:scale[1] md:scale-[1.15] lg:scale-[1.4]',
+        ruda.className,
+      )}
     >
       <body>{children}</body>
     </html>
