@@ -33,7 +33,7 @@ export function SortingForm({ attributes }: Props) {
 
   return (
     <>
-      <div className="grid justify-items-end my-2">
+      <div className="grid justify-items-end mb-10">
         <Link
           href={{
             pathname: `/${params.sheetId}`,
