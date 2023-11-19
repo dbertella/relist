@@ -4,6 +4,10 @@ import { Textarea } from '@/components/ui/textarea'
 import { Label } from '@radix-ui/react-label'
 import Link from 'next/link'
 import { useState } from 'react'
+import { H1, H2, H3 } from '@/components/ui/typography'
+import { Alfa_Slab_One } from 'next/font/google'
+
+const alfa_slab_one = Alfa_Slab_One({ weight: '400', subsets: ['latin'] })
 
 // https://docs.google.com/spreadsheets/d/1ZyDFUqVNyhiN7I-E2AKytdwv_NrNY6K1Ch-zkFwytCs/edit#gid=156674292
 const getIdFromLinkOrNull = (link: string): string | null => {
@@ -25,13 +29,20 @@ export function LinkToRelist() {
   const sheetId = getIdFromLinkOrNull(url)
   return (
     <div className="grid w-full gap-2">
-      <Label htmlFor="create">Create a relist</Label>
+      <div className={alfa_slab_one.className}>
+        <H1>Relist</H1>
+      </div>
+      <p className="mb-2">
+        To generate a new Relist, paste the URL of your Google spreadsheet in the
+        following textarea.
+      </p>
       <Textarea
         id="create"
-        placeholder="Paste your spreadsheet's URL here"
+        placeholder="https://docs.google.com/spreadsheets/d/1Z..."
         value={url}
         onChange={e => setUrl(e.target.value)}
         aria-invalid={sheetId === null}
+        className="mb-2 p-4 h-32 text-ink-100 rounded"
       />
       {sheetId && (
         <Link href={`/${sheetId}`} className="text-action-100">
