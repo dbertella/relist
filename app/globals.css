@@ -165,7 +165,8 @@
 }
 
 @layer utilities {
-  @variants responsive {
+
+  @media (pointer:coarse) {
     /* Hide scrollbar for Chrome, Safari and Opera */
     .no-scrollbar::-webkit-scrollbar {
       display: none;
@@ -177,12 +178,18 @@
       scrollbar-width: none;
       /* Firefox */
     }
-
-    /* Disable input zoom on focu, on safari */
-    @supports (-webkit-overflow-scrolling: touch) {
-      html body input[type=text], html body input[type=password], html body input[type=number], html body textarea,  {
-        font-size: 16px;
-      }
-   }
   }
+
+  /* Disable input zoom on focus on safari */
+  @supports (-webkit-overflow-scrolling: touch) {
+    html body input[type=text], html body input[type=password], html body input[type=number], html body textarea {
+      font-size: 16px;
+    }
+  }
+
+  span[data-state="checked"] {
+    background: rgb(var(--action));
+    border-radius: 30px;
+  }
+  
 }
