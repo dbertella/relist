@@ -1,11 +1,22 @@
 import { Skeleton } from '@/components/ui/skeleton'
 
 export default function Loading() {
-  return <Skeleton className="h-16 w-200 rounded-full" />
-  ;<Skeleton className="h-16 w-220 rounded-full" />
-  ;<Skeleton className="h-16 w-180 rounded-full" />
-  ;<Skeleton className="h-16 w-260 rounded-full" />
-  ;<Skeleton className="h-16 w-220 rounded-full" />
-  ;<Skeleton className="h-16 w-180 rounded-full" />
-  ;<Skeleton className="h-16 w-260 rounded-full" />
+  return (
+    <>
+      <Skeleton className="h-2 w-8/12 my-2" />
+      <Skeleton className="h-2 w-10/12 mb-4" />
+      <Skeleton className="h-32 w-screen mb-4" />
+      <Skeleton className="h-2 w-8/12 mb-2" />
+      <Skeleton className="h-2 w-10/12 mb-2" />
+      <Skeleton className="h-2 w-9/12 mb-2" />
+      <Skeleton className="h-2 w-8/12 mb-2" />
+      <Skeleton className="h-2 w-10/12 mb-4" />
+      <Skeleton className="h-16 w-screen mb-4" />
+      <Skeleton className="h-2 w-8/12 mb-2" />
+      <Skeleton className="h-2 w-10/12 mb-2" />
+      <Skeleton className="h-2 w-9/12 mb-2" />
+      <Skeleton className="h-2 w-8/12 mb-2" />
+      <Skeleton className="h-2 w-10/12 mb-4" />
+    </>
+  )
 }
