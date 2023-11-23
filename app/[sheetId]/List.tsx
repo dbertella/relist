@@ -15,21 +15,12 @@ import { SEPARATOR } from '@/lib/constants'
 import { RelistItem } from '@/lib/relistData'
 import { match, P } from 'ts-pattern'
 import { PERSISTED_QUERY_ITEMS } from './sort/SortingForm'
+import { filterNonNullValues, getAttributeValue } from '@/lib/utils'
+import { ImageBlock } from './ImageGallery'
 
 type Props = {
   items: RelistItem[]
   attributes: Record<AttributeType | 'primary' | 'secondary', AttributeItem[]>
-}
-
-const getAttributeValue = (value: string | number | number[]) => {
-  return match(value)
-    .with(P.array(), val => {
-      const min = val[0]
-      const max = val.at(-1) ?? min
-      return min === max ? `${min}` : `${min} - ${max}`
-    })
-    .with(P.nullish, () => null)
-    .otherwise(() => `${value}`)
 }
 
 const useFilterItems = (items: RelistItem[]) => {
@@ -55,10 +46,6 @@ const useFilterItems = (items: RelistItem[]) => {
     return toBeFiltered.length === 0
   })
 }
-
-const filterNonNullValues = (
-  attr: AttributeItem & { itemValue: string | null },
-): attr is AttributeItem & { itemValue: string } => attr.itemValue !== null
 
 const PrimaryBlock = ({
   attributes,
@@ -91,37 +78,6 @@ const PrimaryBlock = ({
       ))}
     </div>
   ) : null
-}
-
-const ImageBlock = ({
-  attributes,
-  item,
-}: {
-  attributes: AttributeItem[]
-  item: RelistItem
-}) => {
-  const values = attributes
-    ?.map((attr: AttributeItem) => ({
-      ...attr,
-      itemValue: getAttributeValue(item[camelCase(attr.title)]),
-    }))
-    .filter(filterNonNullValues)
-
-  return values?.length > 0
-    ? values.map(it => (
-        <div
-          key={it.title}
-          className="gallery-box pb-1 h-50 inline-flex overflow-x-scroll no-scrollbar scrolling-touch scroll-smooth"
-        >
-          {it.itemValue
-            .split('\n')
-            .filter(Boolean)
-            .map((url: string, i: number) => (
-              <img key={url + i} src={url.trim()} className="h-48 rounded mr-4" alt="" />
-            ))}
-        </div>
-      ))
-    : null
 }
 
 /* Match full links and relative paths */
