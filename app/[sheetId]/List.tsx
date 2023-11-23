@@ -111,7 +111,7 @@ const ImageBlock = ({
     ? values.map(it => (
         <div
           key={it.title}
-          className="gallery-box h-50 inline-flex overflow-x-scroll no-scrollbar scrolling-touch scroll-smooth"
+          className="gallery-box pb-1 h-50 inline-flex overflow-x-scroll no-scrollbar scrolling-touch scroll-smooth"
         >
           {it.itemValue
             .split('\n')
@@ -170,11 +170,10 @@ export default function List({ items: rawItems, attributes }: Props) {
         <ItemList
           key={`${item[camelCase(titleAttrs[0].title)]}`}
           title={titleAttrs?.map(attr => item[camelCase(attr.title)]) as string[]}
-          footer={tagsAttrs?.flatMap(
-            attr =>
-              (item[camelCase(attr.title)] as string)
-                ?.split(',')
-                ?.map(tag => <Badge key={tag}>{tag}</Badge>),
+          footer={tagsAttrs?.flatMap(attr =>
+            (item[camelCase(attr.title)] as string)
+              ?.split(',')
+              ?.map(tag => <Badge key={tag}>{tag}</Badge>),
           )}
         >
           <PrimaryBlock item={item} attributes={attributes.primary} />
