@@ -3,7 +3,7 @@
 import { Textarea } from '@/components/ui/textarea'
 import { Label } from '@radix-ui/react-label'
 import Link from 'next/link'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { H1, H2, H3 } from '@/components/ui/typography'
 import { Alfa_Slab_One } from 'next/font/google'
 import { uniq } from 'lodash'
@@ -26,13 +26,6 @@ const getIdFromLinkOrNull = (link: string): string | null => {
 }
 
 const LOCAL_STORAGE_KEY = 'RELIST_URLS'
-const preserveUrlInLocalStorage = (url: string) => {
-  if (typeof window === 'undefined') return null
-  const urls = getUrlsFromLocalStorage() ?? []
-  urls.push(url)
-
-  window.localStorage.setItem(LOCAL_STORAGE_KEY, uniq(urls.reverse()).join(','))
-}
 
 const getUrlsFromLocalStorage = (): string[] | null => {
   if (typeof window === 'undefined') return null
@@ -43,10 +36,27 @@ const getUrlsFromLocalStorage = (): string[] | null => {
   return null
 }
 
+const usePersistedUrls = () => {
+  const [visitedUrls, setVisited] = useState<string[] | null>(null)
+  useEffect(() => {
+    setVisited(getUrlsFromLocalStorage())
+  }, [])
+
+  const setPersistedUrls = (url: string) => {
+    if (typeof window !== 'undefined') {
+      const urls = uniq([url, ...(visitedUrls ?? [])])
+      setVisited(urls)
+      window.localStorage.setItem(LOCAL_STORAGE_KEY, urls.join(','))
+    }
+  }
+  return [visitedUrls, setPersistedUrls] as const
+}
+
 export function LinkToRelist() {
   const [url, setUrl] = useState('')
   const sheetId = getIdFromLinkOrNull(url)
-  const visitedUrls = getUrlsFromLocalStorage()
+
+  const [visitedUrls, setPersistedUrls] = usePersistedUrls()
   return (
     <div className="grid w-full gap-2">
       <div className={alfa_slab_one.className}>
@@ -67,7 +77,7 @@ export function LinkToRelist() {
       {sheetId && (
         <Link
           href={`/${sheetId}`}
-          onClick={() => preserveUrlInLocalStorage(sheetId)}
+          onClick={() => setPersistedUrls(sheetId)}
           className="text-action-100"
         >
           Create & open
