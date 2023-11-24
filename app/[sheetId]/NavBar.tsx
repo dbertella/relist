@@ -40,37 +40,39 @@ export const NavBar = () => {
   )
 
   return (
-    <menu className="m-4 justify-between items-start flex">
-      <MenuItem
-        path="filter"
-        onIcon="/icon/filter=on.svg"
-        offIcon={
-          hasActiveFilters.length > 0
-            ? '/icon/filter=off-active.svg'
-            : '/icon/filter=off.svg'
-        }
-        title="Filters"
-      />
+    <div className="sticky top-0 z-10 w-full bg-level1-100">
+      <menu className="m-4 justify-between items-start flex">
+        <MenuItem
+          path="filter"
+          onIcon="/icon/filter=on.svg"
+          offIcon={
+            hasActiveFilters.length > 0
+              ? '/icon/filter=off-active.svg'
+              : '/icon/filter=off.svg'
+          }
+          title="Filters"
+        />
 
-      <MenuItem
-        path="sort"
-        onIcon="/icon/sort=on.svg"
-        offIcon="/icon/sort=off.svg"
-        title="Sort"
-      />
-      <MenuItem
-        path="details"
-        onIcon="/icon/details=on.svg"
-        offIcon="/icon/details=off.svg"
-        title="Filters"
-      />
+        <MenuItem
+          path="sort"
+          onIcon="/icon/sort=on.svg"
+          offIcon="/icon/sort=off.svg"
+          title="Sort"
+        />
+        <MenuItem
+          path="details"
+          onIcon="/icon/details=on.svg"
+          offIcon="/icon/details=off.svg"
+          title="Filters"
+        />
 
-      <MenuItem
-        path="data-source"
-        onIcon="/icon/database=on.svg"
-        offIcon="/icon/database=off.svg"
-        title="Data Source"
-      />
-    </menu>
+        <MenuItem
+          path="data-source"
+          onIcon="/icon/database=on.svg"
+          offIcon="/icon/database=off.svg"
+          title="Data Source"
+        />
+      </menu>
+    </div>
   )
 }

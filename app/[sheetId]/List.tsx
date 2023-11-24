@@ -21,6 +21,8 @@ import { ImageBlock } from './ImageGallery'
 type Props = {
   items: RelistItem[]
   attributes: Record<AttributeType | 'primary' | 'secondary', AttributeItem[]>
+  shouldShowDetails?: boolean
+  shouldShowTags?: boolean
 }
 
 const useFilterItems = (items: RelistItem[]) => {
@@ -109,7 +111,12 @@ const LinkBlock = ({
     : null
 }
 
-export default function List({ items: rawItems, attributes }: Props) {
+export default function List({
+  items: rawItems,
+  attributes,
+  shouldShowDetails,
+  shouldShowTags,
+}: Props) {
   const searchParams = useSearchParams()
 
   const attribute = searchParams.get('orderBy') ?? undefined
@@ -126,41 +133,49 @@ export default function List({ items: rawItems, attributes }: Props) {
         <ItemList
           key={`${item[camelCase(titleAttrs[0].title)]}`}
           title={titleAttrs?.map(attr => item[camelCase(attr.title)]) as string[]}
-          footer={tagsAttrs?.flatMap(attr =>
-            (item[camelCase(attr.title)] as string)
-              ?.split(',')
-              ?.map(tag => <Badge key={tag}>{tag}</Badge>),
-          )}
+          footer={
+            shouldShowTags
+              ? tagsAttrs?.flatMap(attr =>
+                  (item[camelCase(attr.title)] as string)
+                    ?.split(',')
+                    ?.map(tag => <Badge key={tag}>{tag}</Badge>),
+                )
+              : null
+          }
         >
           <PrimaryBlock item={item} attributes={attributes.primary} />
-          {attributes.secondary?.map(attr => (
-            <OtherAttribute
-              className="mb-4 text-sm"
-              key={attr.title}
-              {...attr}
-              value={getAttributeValue(item[camelCase(attr.title)])}
-            />
-          ))}
-          {attributes.text.map(attr => (
-            <OtherAttribute
-              className="mb-4 text-sm"
-              key={attr.title}
-              {...attr}
-              value={getAttributeValue(item[camelCase(attr.title)])}
-            />
-          ))}
-          {attributes.paragraph.map(attr => (
-            <OtherAttribute
-              className="mb-4 text-sm"
-              key={attr.title}
-              {...attr}
-              value={getAttributeValue(item[camelCase(attr.title)])}
-              hideTitle
-            />
-          ))}
+          {shouldShowDetails && (
+            <>
+              {attributes.secondary?.map(attr => (
+                <OtherAttribute
+                  className="mb-4 text-sm"
+                  key={attr.title}
+                  {...attr}
+                  value={getAttributeValue(item[camelCase(attr.title)])}
+                />
+              ))}
+              {attributes.text.map(attr => (
+                <OtherAttribute
+                  className="mb-4 text-sm"
+                  key={attr.title}
+                  {...attr}
+                  value={getAttributeValue(item[camelCase(attr.title)])}
+                />
+              ))}
+              {attributes.paragraph.map(attr => (
+                <OtherAttribute
+                  className="mb-4 text-sm"
+                  key={attr.title}
+                  {...attr}
+                  value={getAttributeValue(item[camelCase(attr.title)])}
+                  hideTitle
+                />
+              ))}
 
-          <ImageBlock attributes={attributes[AttributeType.Imageurl]} item={item} />
-          <LinkBlock attributes={attributes[AttributeType.Link]} item={item} />
+              <ImageBlock attributes={attributes[AttributeType.Imageurl]} item={item} />
+              <LinkBlock attributes={attributes[AttributeType.Link]} item={item} />
+            </>
+          )}
         </ItemList>
       ))}
     </>
