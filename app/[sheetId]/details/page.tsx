@@ -22,5 +22,5 @@ export default async function Page({ params }: PageProps) {
       .exhaustive(),
   ) as Record<AttributeType | 'primary' | 'secondary', AttributeItem[]>
 
-  return <List items={items} attributes={attributes} />
+  return <List items={items} attributes={attributes} shouldShowDetails shouldShowTags />
 }
