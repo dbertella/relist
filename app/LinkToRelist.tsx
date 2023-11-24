@@ -3,9 +3,10 @@
 import { Textarea } from '@/components/ui/textarea'
 import { Label } from '@radix-ui/react-label'
 import Link from 'next/link'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { H1, H2, H3 } from '@/components/ui/typography'
 import { Alfa_Slab_One } from 'next/font/google'
+import { uniq } from 'lodash'
 
 const alfa_slab_one = Alfa_Slab_One({ weight: '400', subsets: ['latin'] })
 
@@ -24,9 +25,38 @@ const getIdFromLinkOrNull = (link: string): string | null => {
   }
 }
 
+const LOCAL_STORAGE_KEY = 'RELIST_URLS'
+
+const getUrlsFromLocalStorage = (): string[] | null => {
+  if (typeof window === 'undefined') return null
+  const urls = window.localStorage.getItem(LOCAL_STORAGE_KEY)
+  if (urls) {
+    return urls.split(',')
+  }
+  return null
+}
+
+const usePersistedUrls = () => {
+  const [visitedUrls, setVisited] = useState<string[] | null>(null)
+  useEffect(() => {
+    setVisited(getUrlsFromLocalStorage())
+  }, [])
+
+  const setPersistedUrls = (url: string) => {
+    if (typeof window !== 'undefined') {
+      const urls = uniq([url, ...(visitedUrls ?? [])])
+      setVisited(urls)
+      window.localStorage.setItem(LOCAL_STORAGE_KEY, urls.join(','))
+    }
+  }
+  return [visitedUrls, setPersistedUrls] as const
+}
+
 export function LinkToRelist() {
   const [url, setUrl] = useState('')
   const sheetId = getIdFromLinkOrNull(url)
+
+  const [visitedUrls, setPersistedUrls] = usePersistedUrls()
   return (
     <div className="grid w-full gap-2">
       <div className={alfa_slab_one.className}>
@@ -45,9 +75,25 @@ export function LinkToRelist() {
         className="mb-2 p-4 h-32 text-ink-100 rounded"
       />
       {sheetId && (
-        <Link href={`/${sheetId}`} className="text-action-100">
+        <Link
+          href={`/${sheetId}`}
+          onClick={() => setPersistedUrls(sheetId)}
+          className="text-action-100"
+        >
           Create & open
         </Link>
+      )}
+      {visitedUrls && (
+        <div className="text-ink-100">
+          <H2>Previous Relist</H2>
+          <ul className="list-disc pl-4">
+            {visitedUrls.map((url, index) => (
+              <li key={index}>
+                <Link href={`/${url}`}>{url}</Link>
+              </li>
+            ))}
+          </ul>
+        </div>
       )}
     </div>
   )
