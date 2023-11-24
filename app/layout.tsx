@@ -17,7 +17,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       lang="en"
       data-theme={Theme.Default}
       className={cn(
-        'bg-level1-100 text--100 origin-top sm:scale[1] md:scale-[1.15] lg:scale-[1.4]',
+        'bg-level1-100 text--100',
         ruda.className,
       )}
     >
