@@ -51,3 +51,7 @@ export const getAttributeValue = (value: string | number | number[]) => {
 export const filterNonNullValues = (
   attr: AttributeItem & { itemValue: string | null },
 ): attr is AttributeItem & { itemValue: string } => attr.itemValue !== null
+
+export function absoluteUrl(path: string) {
+  return `${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}${path}`
+}

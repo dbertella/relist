@@ -21,9 +21,7 @@ export const ItemList = ({ title, description, children, footer }: Props) => {
         {title.map(t => (
           <CardTitle key={`${t}`}>{t}</CardTitle>
         ))}
-        {description?.map(t => (
-          <CardDescription key={`${t}`}>{t}</CardDescription>
-        ))}
+        {description?.map(t => <CardDescription key={`${t}`}>{t}</CardDescription>)}
       </CardHeader>
       <CardContent>{children}</CardContent>
       {footer && <CardFooter>{footer}</CardFooter>}

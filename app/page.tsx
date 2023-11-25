@@ -1,7 +1,10 @@
 import { LinkToRelist } from './LinkToRelist'
 import Link from 'next/link'
+import SignIn from '@/components/auth/SignIn'
+import { getUserAuth } from '@/lib/auth/utils'
 
 export default async function Home() {
+  const { session } = await getUserAuth()
   return (
     <main className="modals m-auto p-6 bg-gradient-to-b from-gradient-top to-gradient-bottom text-wording-100">
       <div className="max-w-sm m-auto">
@@ -21,6 +24,13 @@ export default async function Home() {
           <Link href="https://github.com/dbertella/relist">visit the documentation</Link>.
         </p>
       </div>
+
+      {session ? (
+        <pre className="bg-slate-100 dark:bg-slate-800 p-6">
+          {JSON.stringify(session, null, 2)}
+        </pre>
+      ) : null}
+      <SignIn />
     </main>
   )
 }

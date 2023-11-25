@@ -135,10 +135,11 @@ export default function List({
           title={titleAttrs?.map(attr => item[camelCase(attr.title)]) as string[]}
           footer={
             shouldShowTags
-              ? tagsAttrs?.flatMap(attr =>
-                  (item[camelCase(attr.title)] as string)
-                    ?.split(',')
-                    ?.map(tag => <Badge key={tag}>{tag}</Badge>),
+              ? tagsAttrs?.flatMap(
+                  attr =>
+                    (item[camelCase(attr.title)] as string)
+                      ?.split(',')
+                      ?.map(tag => <Badge key={tag}>{tag}</Badge>),
                 )
               : null
           }

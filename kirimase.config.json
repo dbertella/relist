@@ -1,0 +1,12 @@
+{
+  "hasSrc": false,
+  "packages": ["prisma", "next-auth", "trpc", "resend", "stripe"],
+  "preferredPackageManager": "npm",
+  "t3": false,
+  "alias": "@",
+  "rootPath": "",
+  "componentLib": "shadcn-ui",
+  "orm": "prisma",
+  "driver": "pg",
+  "auth": "next-auth"
+}
