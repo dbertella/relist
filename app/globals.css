@@ -213,7 +213,7 @@
 
   /* make the vertical images scrollable */
   .image-container {
-    max-height: calc(100vh - 108px);
+    max-height: calc(100vh - 6.75em);
   }
 
 }
