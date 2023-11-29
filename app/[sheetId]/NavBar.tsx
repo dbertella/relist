@@ -41,7 +41,7 @@ export const NavBar = () => {
 
   return (
     <div className="sticky top-0 z-10 w-full bg-level1-100">
-      <menu className="m-4 justify-between items-start flex">
+      <menu className="p-4 justify-between items-start flex">
         <MenuItem
           path="filter"
           onIcon="/icon/filter=on.svg"
