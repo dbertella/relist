@@ -36,17 +36,25 @@ const ImageList = ({ title, itemValue }: AttributeItem & { itemValue: string }) 
           <DialogContent>
             {images.length > 1 && (
               <DialogHeader>
-                <div className="flex justify-between">
-                  <Button variant="link" onClick={() => setUrl(images[findPrev()])}>
+                <div className="max-w-2xl mx-auto mb-6">
+                  <Button
+                    className="px-6 mx-6"
+                    variant="link"
+                    onClick={() => setUrl(images[findPrev()])}
+                  >
                     Prev
                   </Button>
-                  <Button variant="link" onClick={() => setUrl(images[findNext()])}>
+                  <Button
+                    className="px-6 mx-6"
+                    variant="link"
+                    onClick={() => setUrl(images[findNext()])}
+                  >
                     Next
                   </Button>
                 </div>
               </DialogHeader>
             )}
-            <div className="w-full flex justify-center">
+            <div className="image-container w-fit m-auto overflow-y-scroll">
               <DialogDescription>
                 <img src={imgUrl} className="h-full" alt="" />
               </DialogDescription>

@@ -211,4 +211,9 @@
     border-radius: 12px;
   }
 
+  /* make the vertical images scrollable */
+  .image-container {
+    max-height: calc(100vh - 108px);
+  }
+
 }
