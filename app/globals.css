@@ -215,6 +215,7 @@
   /* make the vertical images scrollable */
   .image-container {
     max-height: calc(100vh - 6.75em);
+  }
 
   /* menu icons */
   @media (min-width: 640px) {
