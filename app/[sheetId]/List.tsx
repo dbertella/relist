@@ -64,7 +64,7 @@ const PrimaryBlock = ({
     .filter(filterNonNullValues)
 
   return values?.length > 0 ? (
-    <div className="innercard flex justify-between flex-wrap items-start p-4 mb-4 rounded-lg bg-level3">
+    <div className="innercard flex justify-between flex-wrap items-start p-4 rounded-lg bg-level3">
       {values.map(attribute => (
         <div
           key={attribute.title}
@@ -103,8 +103,19 @@ const LinkBlock = ({
     ? values.map(it => {
         const myMatch = it.itemValue.match(regex)
         return (
-          <div key={it.title} className="text-accent">
-            <a href={myMatch?.[2] ?? '#'}>{myMatch?.[1]}</a>
+          <div key={it.title} className="link text-action text-sm">
+            <a target="_blank" href={myMatch?.[2] ?? '#'}>
+              {myMatch?.[1]}{' '}
+              <svg
+                className="h-2 inline ml-1 fill-action-100 stroke-action-100"
+                viewBox="0 0 13 9"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M5.16667 4.5L0.980505 7.63962L1.92164 4.81622C1.99006 4.61095 1.99006 4.38903 1.92164 4.18376L0.980507 1.36038L5.16667 4.5Z" />
+                <path d="M12.1667 4.5L7.9805 7.63962L8.92164 4.81622C8.99006 4.61095 8.99006 4.38903 8.92164 4.18376L7.98051 1.36038L12.1667 4.5Z" />
+              </svg>
+            </a>
           </div>
         )
       })
@@ -148,7 +159,7 @@ export default function List({
             <>
               {attributes.secondary?.map(attr => (
                 <OtherAttribute
-                  className="mb-4 text-sm"
+                  className="text-sm"
                   key={attr.title}
                   {...attr}
                   value={getAttributeValue(item[camelCase(attr.title)])}
@@ -156,7 +167,7 @@ export default function List({
               ))}
               {attributes.text.map(attr => (
                 <OtherAttribute
-                  className="mb-4 text-sm"
+                  className="text-sm"
                   key={attr.title}
                   {...attr}
                   value={getAttributeValue(item[camelCase(attr.title)])}
@@ -164,7 +175,7 @@ export default function List({
               ))}
               {attributes.paragraph.map(attr => (
                 <OtherAttribute
-                  className="mb-4 text-sm"
+                  className="text-sm"
                   key={attr.title}
                   {...attr}
                   value={getAttributeValue(item[camelCase(attr.title)])}
