@@ -196,6 +196,7 @@
     }
   }
 
+  /* gallery scrollbar */
   .gallery-box::-webkit-scrollbar {
     height: 8px;
   }
@@ -214,6 +215,17 @@
   /* make the vertical images scrollable */
   .image-container {
     max-height: calc(100vh - 6.75em);
+
+  /* menu icons */
+  @media (min-width: 640px) {
+    menu a img {
+      width: 50px;
+    }
+  }
+  @media (min-width: 1024px) {
+    menu a img {
+      width: 60px;
+    }
   }
 
 }
