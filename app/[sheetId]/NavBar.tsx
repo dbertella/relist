@@ -43,6 +43,12 @@ export const NavBar = () => {
     <div className="sticky top-0 z-10 w-full bg-level1-100">
       <menu className="p-4 justify-between items-start flex">
         <MenuItem
+          path="details"
+          onIcon="/icon/details=on.svg"
+          offIcon="/icon/details=off.svg"
+          title="Filters"
+        />
+        <MenuItem
           path="filter"
           onIcon="/icon/filter=on.svg"
           offIcon={
@@ -58,12 +64,6 @@ export const NavBar = () => {
           onIcon="/icon/sort=on.svg"
           offIcon="/icon/sort=off.svg"
           title="Sort"
-        />
-        <MenuItem
-          path="details"
-          onIcon="/icon/details=on.svg"
-          offIcon="/icon/details=off.svg"
-          title="Filters"
         />
 
         <MenuItem

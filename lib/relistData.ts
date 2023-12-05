@@ -8,9 +8,12 @@ export type RelistItem = Record<string, string | number | number[]>
 
 export const getRelistData = unstable_cache(
   async (spreadsheetId: string) => {
-    const [info] = await getDataFromSheet(spreadsheetId, 'info')
-    const meta = await getDataFromSheet(spreadsheetId, info.sheetForListSetup)
-    const items = await getDataFromSheet(spreadsheetId, info.sheetForListData)
+    const [info] = await getDataFromSheet(spreadsheetId, 'Relist info')
+    const meta = await getDataFromSheet(spreadsheetId, 'Relist setup')
+    const items = await getDataFromSheet(
+      spreadsheetId,
+      info.nameOfTheSheetContainingTheData,
+    )
 
     const metaMap = Object.fromEntries(meta.map(it => [camelCase(it.title), it]))
 
@@ -61,6 +64,6 @@ export const getRelistData = unstable_cache(
   },
   ['full-data'],
   {
-    revalidate: 180,
+    revalidate: 10,
   },
 )
