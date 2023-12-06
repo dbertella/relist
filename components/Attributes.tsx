@@ -21,7 +21,7 @@ export type AttributeItem = {
   showMax: string
   unit: string
   size: string
-  inPreview: 'yes' | 'no'
+  showInPreview: 'yes' | 'no'
   value: string | null
   className?: string
 }
