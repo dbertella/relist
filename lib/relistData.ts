@@ -15,7 +15,7 @@ export const getRelistData = unstable_cache(
       info.nameOfTheSheetContainingTheData,
     )
 
-    const metaMap = Object.fromEntries(meta.map(it => [camelCase(it.title), it]))
+    const metaMap = Object.fromEntries(meta.map(it => [camelCase(it.columnName), it]))
 
     const parsedItems = items.map(it =>
       pickBy(
@@ -35,7 +35,7 @@ export const getRelistData = unstable_cache(
     ) as RelistItem[]
 
     const parsedMeta = meta.map(property => {
-      const key = camelCase(property.title)
+      const key = camelCase(property.columnName)
       const range = parsedItems
         .flatMap(it => it[key])
         .filter(Boolean)
@@ -44,6 +44,7 @@ export const getRelistData = unstable_cache(
       const max = range.at(-1)
       return {
         ...property,
+        title: property.columnName,
         ...match(property.type)
           .with(P.union('number', 'range'), () => {
             return {
