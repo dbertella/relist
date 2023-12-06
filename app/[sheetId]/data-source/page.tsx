@@ -11,8 +11,8 @@ export default async function Home() {
         <p className="mb-2">Not working? Check that...</p>
         <ul className="list-disc pl-4">
           <li className="mb-2">The spreadsheet was made public.</li>
-          <li className="mb-2">The sheet with your data was renamed 'My data'.</li>
-          <li className="mb-2">The sheet 'Relist setup' was filled in.</li>
+          <li className="mb-2">The sheet with your data was renamed &apos;My data&apos;.</li>
+          <li className="mb-2">The sheet &apos;Relist setup&apos; was filled in.</li>
         </ul>
         <p>
           For more info,{' '}
