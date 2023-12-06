@@ -10,15 +10,13 @@ export default async function Home() {
       <div className="mt-10 max-w-sm m-auto">
         <p className="mb-2">Not working? Check that...</p>
         <ul className="list-disc pl-4">
-          <li className="mb-2">
-            The original spreadsheet was added to the Relist Google worksheet template.
-          </li>
-          <li className="mb-2">The relist-data sheet of the template is filled in.</li>
-          <li className="mb-2">The spreadsheet is set publicly visible.</li>
+          <li className="mb-2">The spreadsheet was made public.</li>
+          <li className="mb-2">The sheet with your data was renamed 'My data'.</li>
+          <li className="mb-2">The sheet 'Relist setup' was filled in.</li>
         </ul>
         <p>
           For more info,{' '}
-          <Link href="https://github.com/dbertella/relist">visit the documentation</Link>.
+          <Link href="https://github.com/dbertella/relist">visit the repo</Link>.
         </p>
       </div>
     </main>
