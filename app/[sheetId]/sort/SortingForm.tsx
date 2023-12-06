@@ -29,8 +29,6 @@ export function SortingForm({ attributes }: Props) {
 
   const defaultValue = camelCase(attributes[0].title)
 
-  console.log({ query })
-
   return (
     <>
       <div className="grid justify-items-end mb-10">
