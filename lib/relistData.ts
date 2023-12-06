@@ -8,11 +8,14 @@ export type RelistItem = Record<string, string | number | number[]>
 
 export const getRelistData = unstable_cache(
   async (spreadsheetId: string) => {
-    const [info] = await getDataFromSheet(spreadsheetId, 'info')
-    const meta = await getDataFromSheet(spreadsheetId, info.sheetForListSetup)
-    const items = await getDataFromSheet(spreadsheetId, info.sheetForListData)
+    const [info] = await getDataFromSheet(spreadsheetId, 'Relist info')
+    const meta = await getDataFromSheet(spreadsheetId, 'Relist setup')
+    const items = await getDataFromSheet(
+      spreadsheetId,
+      info.nameOfTheSheetContainingTheData,
+    )
 
-    const metaMap = Object.fromEntries(meta.map(it => [camelCase(it.title), it]))
+    const metaMap = Object.fromEntries(meta.map(it => [camelCase(it.columnName), it]))
 
     const parsedItems = items.map(it =>
       pickBy(
@@ -32,7 +35,7 @@ export const getRelistData = unstable_cache(
     ) as RelistItem[]
 
     const parsedMeta = meta.map(property => {
-      const key = camelCase(property.title)
+      const key = camelCase(property.columnName)
       const range = parsedItems
         .flatMap(it => it[key])
         .filter(Boolean)
@@ -41,6 +44,7 @@ export const getRelistData = unstable_cache(
       const max = range.at(-1)
       return {
         ...property,
+        title: property.columnName,
         ...match(property.type)
           .with(P.union('number', 'range'), () => {
             return {
@@ -61,6 +65,6 @@ export const getRelistData = unstable_cache(
   },
   ['full-data'],
   {
-    revalidate: 180,
+    revalidate: 10,
   },
 )

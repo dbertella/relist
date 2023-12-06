@@ -18,11 +18,11 @@ export default async function PageLayout({
   return (
     <main className="max-w-2xl m-auto px-4 leading-normal">
       <Card className="py-4 px-1 border-none rounded-none bg-level2">
-        <H3>A {info.author}&apos;s list</H3>
+        <H3>A {info.owner}&apos;s list</H3>
         <div className={alfa_slab_one.className}>
-          <H1>{info.title}</H1>
+          <H1>{info.titleForThisRelist}</H1>
         </div>
-        <H2>{info.description}</H2>
+        <H2>{info.descriptionForThisRelist}</H2>
       </Card>
 
       <NavBar />
