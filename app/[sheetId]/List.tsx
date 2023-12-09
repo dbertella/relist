@@ -105,7 +105,7 @@ const LinkBlock = ({
         return (
           <div key={it.title} className="link text-action text-sm">
             <a target="_blank" href={myMatch?.[2] ?? '#'}>
-              {myMatch?.[1]}{' '}
+              {myMatch?.[1] || 'Open Link'}{' '}
               <svg
                 className="h-2 inline ml-1 fill-action-100 stroke-action-100"
                 viewBox="0 0 13 9"
