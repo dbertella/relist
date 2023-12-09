@@ -165,7 +165,7 @@ export default function List({
                   value={getAttributeValue(item[camelCase(attr.title)])}
                 />
               ))}
-              {attributes.text.map(attr => (
+              {attributes.text?.map(attr => (
                 <OtherAttribute
                   className="text-sm"
                   key={attr.title}
@@ -173,7 +173,7 @@ export default function List({
                   value={getAttributeValue(item[camelCase(attr.title)])}
                 />
               ))}
-              {attributes.paragraph.map(attr => (
+              {attributes.paragraph?.map(attr => (
                 <OtherAttribute
                   className="text-sm"
                   key={attr.title}

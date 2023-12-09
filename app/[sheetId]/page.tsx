@@ -11,7 +11,7 @@ export default async function Page({ params }: PageProps) {
   const attributes = groupBy(meta, it =>
     match(it.type)
       .with(P.union('number', 'range'), () => {
-        return it.showInPreview === 'yes' ? 'primary' : 'secondary'
+        return it.showInPreview.toLowerCase() === 'yes' ? 'primary' : 'secondary'
       })
       .with('title', () => 'title')
       .with('tags', () => 'tags')

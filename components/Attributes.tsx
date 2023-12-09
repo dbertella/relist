@@ -42,7 +42,7 @@ export const Attribute = ({
     )}
     <span className="text-wording-100 text-sm leading-normal">
       {value}
-      {showMax === 'yes' && ` / ${max}`} {unit}
+      {showMax.toLowerCase() === 'yes' && ` / ${max}`} {unit}
     </span>
   </>
 )
