@@ -34,28 +34,30 @@ export const getRelistData = unstable_cache(
       ),
     ) as RelistItem[]
 
-    const parsedMeta = meta.map(property => {
-      const key = camelCase(property.columnName)
-      const range = parsedItems
-        .flatMap(it => it[key])
-        .filter(Boolean)
-        .sort()
-      const min = range[0]
-      const max = range.at(-1)
-      return {
-        ...property,
-        title: property.columnName,
-        ...match(property.type)
-          .with(P.union('number', 'range'), () => {
-            return {
-              min: Number(property.min || min),
-              max: Number(property.max || max),
-            }
-          })
+    const parsedMeta = meta
+      .map(property => {
+        const key = camelCase(property.columnName)
+        const range = parsedItems
+          .flatMap(it => it[key])
+          .filter(Boolean)
+          .sort()
+        const min = range[0]
+        const max = range.at(-1)
+        return {
+          ...property,
+          title: property.columnName,
+          ...match(property.type)
+            .with(P.union('number', 'range'), () => {
+              return {
+                min: Number(property.min || min),
+                max: Number(property.max || max),
+              }
+            })
 
-          .otherwise(() => null),
-      }
-    }) as unknown as AttributeItem[]
+            .otherwise(() => null),
+        }
+      })
+      .filter(it => it.title) as unknown as AttributeItem[]
 
     return {
       info,
