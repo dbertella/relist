@@ -59,7 +59,7 @@ const PrimaryBlock = ({
   const values = attributes
     ?.map((attr: AttributeItem) => ({
       ...attr,
-      itemValue: getAttributeValue(item[camelCase(attr.title)]),
+      itemValue: getAttributeValue(item[camelCase(attr.columnName)]),
     }))
     .filter(filterNonNullValues)
 
@@ -67,7 +67,7 @@ const PrimaryBlock = ({
     <div className="innercard flex justify-between flex-wrap items-start p-4 rounded-lg bg-level3">
       {values.map(attribute => (
         <div
-          key={attribute.title}
+          key={attribute.columnName}
           className="flex flex-1 flex-col items-center text-base"
         >
           <PrimaryAttribute
@@ -95,7 +95,7 @@ const LinkBlock = ({
   const values = attributes
     ?.map((attr: AttributeItem) => ({
       ...attr,
-      itemValue: getAttributeValue(item[camelCase(attr.title)]),
+      itemValue: getAttributeValue(item[camelCase(attr.columnName)]),
     }))
     .filter(filterNonNullValues)
 
@@ -103,7 +103,7 @@ const LinkBlock = ({
     ? values.map(it => {
         const myMatch = it.itemValue.match(regex)
         return (
-          <div key={it.title} className="link text-action text-sm">
+          <div key={it.columnName} className="link text-action text-sm">
             <a target="_blank" href={myMatch?.[2] ?? '#'}>
               {myMatch?.[1]}{' '}
               <svg
@@ -142,12 +142,12 @@ export default function List({
     <>
       {orderBy(items, attribute, [sort])?.map(item => (
         <ItemList
-          key={`${item[camelCase(titleAttrs[0].title)]}`}
-          title={titleAttrs?.map(attr => item[camelCase(attr.title)]) as string[]}
+          key={`${item[camelCase(titleAttrs[0].columnName)]}`}
+          title={titleAttrs?.map(attr => item[camelCase(attr.columnName)]) as string[]}
           footer={
             shouldShowTags
               ? tagsAttrs?.flatMap(attr =>
-                  (item[camelCase(attr.title)] as string)
+                  (item[camelCase(attr.columnName)] as string)
                     ?.split(',')
                     ?.map(tag => <Badge key={tag}>{tag}</Badge>),
                 )
@@ -160,25 +160,25 @@ export default function List({
               {attributes.secondary?.map(attr => (
                 <OtherAttribute
                   className="text-sm"
-                  key={attr.title}
+                  key={attr.columnName}
                   {...attr}
-                  value={getAttributeValue(item[camelCase(attr.title)])}
+                  value={getAttributeValue(item[camelCase(attr.columnName)])}
                 />
               ))}
               {attributes.text?.map(attr => (
                 <OtherAttribute
                   className="text-sm"
-                  key={attr.title}
+                  key={attr.columnName}
                   {...attr}
-                  value={getAttributeValue(item[camelCase(attr.title)])}
+                  value={getAttributeValue(item[camelCase(attr.columnName)])}
                 />
               ))}
               {attributes.paragraph?.map(attr => (
                 <OtherAttribute
                   className="text-sm"
-                  key={attr.title}
+                  key={attr.columnName}
                   {...attr}
-                  value={getAttributeValue(item[camelCase(attr.title)])}
+                  value={getAttributeValue(item[camelCase(attr.columnName)])}
                   hideTitle
                 />
               ))}
