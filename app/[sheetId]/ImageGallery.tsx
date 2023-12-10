@@ -54,9 +54,11 @@ const ImageList = ({ title, itemValue }: AttributeItem & { itemValue: string }) 
                 </div>
               </DialogHeader>
             )}
-            <div className="image-container w-fit m-auto overflow-y-auto">
+            <div className="image-container w-fit h-auto m-auto overflow-y-auto">
               <DialogDescription>
-                <img src={imgUrl} className="h-full" alt="" />
+                <div>
+                  <img src={imgUrl} className="w-max-full w-auto h-auto block" alt="" />
+                </div>
               </DialogDescription>
             </div>
           </DialogContent>
