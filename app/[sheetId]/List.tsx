@@ -83,7 +83,7 @@ const PrimaryBlock = ({
 }
 
 /* Match full links and relative paths */
-const regex = /^\[([\w\s\d]+)\]\(((?:\/|https?:\/\/)[\w\d./?=#-]+)\)$/
+const regex = /^\[([\w\s\d]+)\]\(((?:\/|https?:\/\/)[\w\d./?=#-&]+)\)$/
 
 const LinkBlock = ({
   attributes,
