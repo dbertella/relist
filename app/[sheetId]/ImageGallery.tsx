@@ -31,7 +31,7 @@ const ImageList = ({ title, itemValue }: AttributeItem & { itemValue: string }) 
       {images.map((url: string, i: number) => (
         <Fragment key={url + i}>
           <DialogTrigger asChild onClick={() => setUrl(url)}>
-            <img src={url} className="h-48 rounded mr-4" alt="" />
+            <img src={url} className="h-48 rounded-lg mr-4" alt="" />
           </DialogTrigger>
           <DialogContent>
             {images.length > 1 && (
