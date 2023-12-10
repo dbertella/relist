@@ -11,11 +11,9 @@ export const ItemList = ({ title, children, footer }: Props) => {
   return (
     <Card>
       <CardContent>
-        {title.map(t => (
-          <CardTitle key={`${t}`}>{t}</CardTitle>
-        ))}
+        {title.map(t => !!t && <CardTitle key={`${t}`}>{t}</CardTitle>)}
         {children}
-        {footer && <CardFooter>{footer}</CardFooter>}
+        {footer !== 'undefined' && <CardFooter>{footer}</CardFooter>}
       </CardContent>
     </Card>
   )
