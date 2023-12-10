@@ -7,7 +7,7 @@ type Props = {
   children: ReactNode
   footer: ReactNode
 }
-export const ItemList = ({ title, description, children, footer }: Props) => {
+export const ItemList = ({ title, children, footer }: Props) => {
   return (
     <Card>
       <CardContent>

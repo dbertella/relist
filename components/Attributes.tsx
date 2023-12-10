@@ -13,7 +13,7 @@ export const AttributeType = {
 export type AttributeType = ValueOf<typeof AttributeType>
 
 export type AttributeItem = {
-  columnName: string
+  title: string
   type: AttributeType
   rename: string
   min: number
@@ -26,7 +26,7 @@ export type AttributeItem = {
   className?: string
 }
 export const Attribute = ({
-  columnName,
+  title,
   value,
   rename,
   max,
@@ -37,7 +37,7 @@ export const Attribute = ({
   <>
     {!hideTitle && (
       <span className="column-name mb-1.5 mr-3 text-emphasis text-sm leading-normal">
-        {rename || columnName}
+        {rename || title}
       </span>
     )}
     <span className="text-wording-100 text-sm leading-normal">
@@ -50,7 +50,7 @@ export const Attribute = ({
 export const PrimaryAttribute = ({ className, ...props }: AttributeItem) =>
   props.value && (
     <div
-      key={props.columnName}
+      key={props.title}
       className={cn('flex flex-1 flex-col items-center text-base', className)}
     >
       <Attribute {...props} />
