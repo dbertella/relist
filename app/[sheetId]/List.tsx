@@ -102,10 +102,12 @@ const LinkBlock = ({
   return values?.length > 0
     ? values.map(it => {
         const myMatch = it.itemValue.match(regex)
+        const url = myMatch?.[2] ?? it.itemValue
+        const label = myMatch?.[1] ?? 'Open Link'
         return (
           <div key={it.title} className="link text-action text-sm">
-            <a target="_blank" href={myMatch?.[2] ?? '#'}>
-              {myMatch?.[1] || 'Open Link'}{' '}
+            <a target="_blank" href={url ?? '#'}>
+              {label}{' '}
               <svg
                 className="h-2 inline ml-1 fill-action-100 stroke-action-100"
                 viewBox="0 0 13 9"
