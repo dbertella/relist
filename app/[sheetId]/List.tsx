@@ -17,6 +17,8 @@ import { match, P } from 'ts-pattern'
 import { PERSISTED_QUERY_ITEMS } from './sort/SortingForm'
 import { filterNonNullValues, getAttributeValue } from '@/lib/utils'
 import { ImageBlock } from './ImageGallery'
+import { Input } from '@/components/ui/input'
+import { useState } from 'react'
 
 type Props = {
   items: RelistItem[]
@@ -170,9 +172,32 @@ export default function List({
     shouldShowDetails,
   )
 
+  const [searchValue, setSearchValue] = useState('')
+
+  const regex = new RegExp(searchValue, 'i')
+  const itemsfilterByTextSearch = !searchValue
+    ? items
+    : items.filter(
+        item =>
+          titleAttrs.some(attr => regex.test(item[camelCase(attr.title)] as string)) ||
+          tagsAttrs.some(attr => regex.test(item[camelCase(attr.title)] as string)) ||
+          textAttributes.some(attr =>
+            regex.test(item[camelCase(attr.title)] as string),
+          ) ||
+          paragraphAttributes.some(attr =>
+            regex.test(item[camelCase(attr.title)] as string),
+          ),
+      )
+
   return (
     <>
-      {orderBy(items, attribute, [sort])?.map((item, i) => (
+      <Input
+        value={searchValue}
+        onChange={({ target }) => setSearchValue(target.value)}
+        className="mb-5"
+        placeholder="Search by name or tag"
+      />
+      {orderBy(itemsfilterByTextSearch, attribute, [sort])?.map((item, i) => (
         <ItemList
           key={`${item[camelCase(titleAttrs[0]?.title)]}-${i}`}
           title={titleAttrs.map(attr => item[camelCase(attr.title)]) as string[]}
