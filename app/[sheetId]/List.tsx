@@ -124,6 +124,13 @@ const LinkBlock = ({
     : null
 }
 
+const filterItemsInPreview = (attributes: AttributeItem[], shouldShowDetails?: boolean) =>
+  attributes?.filter(
+    !shouldShowDetails
+      ? (attribute: AttributeItem) => attribute.showInPreview === 'yes'
+      : () => shouldShowDetails,
+  ) ?? []
+
 export default function List({
   items: rawItems,
   attributes,
@@ -137,18 +144,41 @@ export default function List({
 
   const items = useFilterItems(rawItems)
 
-  const titleAttrs = attributes[AttributeType.Title]
-  const tagsAttrs = attributes[AttributeType.Tags]
+  const titleAttrs = filterItemsInPreview(
+    attributes[AttributeType.Title],
+    shouldShowDetails,
+  )
+  const tagsAttrs = filterItemsInPreview(
+    attributes[AttributeType.Tags],
+    shouldShowDetails,
+  )
+  const secondaryAttributes = filterItemsInPreview(
+    attributes.secondary,
+    shouldShowDetails,
+  )
+  const textAttributes = filterItemsInPreview(attributes.text, shouldShowDetails)
+  const paragraphAttributes = filterItemsInPreview(
+    attributes.paragraph,
+    shouldShowDetails,
+  )
+  const imageAttributes = filterItemsInPreview(
+    attributes[AttributeType.Imageurl],
+    shouldShowDetails,
+  )
+  const linkAttributes = filterItemsInPreview(
+    attributes[AttributeType.Link],
+    shouldShowDetails,
+  )
 
   return (
     <>
-      {orderBy(items, attribute, [sort])?.map(item => (
+      {orderBy(items, attribute, [sort])?.map((item, i) => (
         <ItemList
-          key={`${item[camelCase(titleAttrs[0].title)]}`}
-          title={titleAttrs?.map(attr => item[camelCase(attr.title)]) as string[]}
+          key={`${item[camelCase(titleAttrs[0]?.title)]}-${i}`}
+          title={titleAttrs.map(attr => item[camelCase(attr.title)]) as string[]}
           footer={
             shouldShowTags
-              ? tagsAttrs?.flatMap(attr =>
+              ? tagsAttrs.flatMap(attr =>
                   (item[camelCase(attr.title)] as string)
                     ?.split(',')
                     ?.map(tag => <Badge key={tag}>{tag}</Badge>),
@@ -157,38 +187,35 @@ export default function List({
           }
         >
           <PrimaryBlock item={item} attributes={attributes.primary} />
-          {shouldShowDetails && (
-            <>
-              {attributes.secondary?.map(attr => (
-                <OtherAttribute
-                  className="text-sm"
-                  key={attr.title}
-                  {...attr}
-                  value={getAttributeValue(item[camelCase(attr.title)])}
-                />
-              ))}
-              {attributes.text?.map(attr => (
-                <OtherAttribute
-                  className="text-sm"
-                  key={attr.title}
-                  {...attr}
-                  value={getAttributeValue(item[camelCase(attr.title)])}
-                />
-              ))}
-              {attributes.paragraph?.map(attr => (
-                <OtherAttribute
-                  className="text-sm"
-                  key={attr.title}
-                  {...attr}
-                  value={getAttributeValue(item[camelCase(attr.title)])}
-                  hideTitle
-                />
-              ))}
 
-              <ImageBlock attributes={attributes[AttributeType.Imageurl]} item={item} />
-              <LinkBlock attributes={attributes[AttributeType.Link]} item={item} />
-            </>
-          )}
+          {secondaryAttributes.map(attr => (
+            <OtherAttribute
+              className="text-sm"
+              key={attr.title}
+              {...attr}
+              value={getAttributeValue(item[camelCase(attr.title)])}
+            />
+          ))}
+          {textAttributes.map(attr => (
+            <OtherAttribute
+              className="text-sm"
+              key={attr.title}
+              {...attr}
+              value={getAttributeValue(item[camelCase(attr.title)])}
+            />
+          ))}
+          {paragraphAttributes.map(attr => (
+            <OtherAttribute
+              className="text-sm"
+              key={attr.title}
+              {...attr}
+              value={getAttributeValue(item[camelCase(attr.title)])}
+              hideTitle
+            />
+          ))}
+
+          <ImageBlock attributes={imageAttributes} item={item} />
+          <LinkBlock attributes={linkAttributes} item={item} />
         </ItemList>
       ))}
     </>
