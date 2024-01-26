@@ -1,5 +1,5 @@
 import { match, P } from 'ts-pattern'
-import { camelCase, mapValues, range, pickBy } from 'lodash'
+import { camelCase, mapValues, range, pickBy, orderBy } from 'lodash'
 import { getDataFromSheet } from './sheets'
 import { AttributeItem } from '@/components/Attributes'
 import { unstable_cache } from 'next/cache'
@@ -37,10 +37,7 @@ export const getRelistData = unstable_cache(
     const parsedMeta = meta
       .map(property => {
         const key = camelCase(property.columnName)
-        const range = parsedItems
-          .flatMap(it => it[key])
-          .filter(Boolean)
-          .sort()
+        const range = orderBy(parsedItems.flatMap(it => it[key]).filter(Boolean))
         const min = range[0]
         const max = range.at(-1)
         return {
