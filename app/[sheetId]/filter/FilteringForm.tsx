@@ -12,7 +12,6 @@ import { useState } from 'react'
 type Props = {
   numbers: AttributeItem[]
   ranges: AttributeItem[]
-  texts: AttributeItem[]
 }
 
 const FilterItem = ({ attribute }: { attribute: AttributeItem }) => {
@@ -50,7 +49,7 @@ const FilterItem = ({ attribute }: { attribute: AttributeItem }) => {
   )
 }
 
-export function FilteringForm({ numbers = [], ranges = [], texts = [] }: Props) {
+export function FilteringForm({ numbers = [], ranges = [] }: Props) {
   const { params, searchParams, query } = useQueryString()
 
   const persistentParams = Array.from(searchParams.entries()).filter(it =>

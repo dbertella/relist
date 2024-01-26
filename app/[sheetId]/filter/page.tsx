@@ -12,7 +12,6 @@ export default async function FilterComponent({ params }: PageProps) {
       <FilteringForm
         numbers={attributeMap.number}
         ranges={attributeMap.range}
-        texts={attributeMap.text}
       />
     </main>
   )

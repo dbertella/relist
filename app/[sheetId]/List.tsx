@@ -17,6 +17,8 @@ import { match, P } from 'ts-pattern'
 import { PERSISTED_QUERY_ITEMS } from './sort/SortingForm'
 import { filterNonNullValues, getAttributeValue } from '@/lib/utils'
 import { ImageBlock } from './ImageGallery'
+import { Input } from '@/components/ui/input'
+import { useState } from 'react'
 
 type Props = {
   items: RelistItem[]
@@ -124,6 +126,13 @@ const LinkBlock = ({
     : null
 }
 
+const filterItemsInPreview = (attributes: AttributeItem[], shouldShowDetails?: boolean) =>
+  attributes?.filter(
+    !shouldShowDetails
+      ? (attribute: AttributeItem) => attribute.showInPreview === 'yes'
+      : () => shouldShowDetails,
+  ) ?? []
+
 export default function List({
   items: rawItems,
   attributes,
@@ -137,18 +146,64 @@ export default function List({
 
   const items = useFilterItems(rawItems)
 
-  const titleAttrs = attributes[AttributeType.Title]
-  const tagsAttrs = attributes[AttributeType.Tags]
+  const titleAttrs = filterItemsInPreview(
+    attributes[AttributeType.Title],
+    shouldShowDetails,
+  )
+  const tagsAttrs = filterItemsInPreview(
+    attributes[AttributeType.Tags],
+    shouldShowDetails,
+  )
+  const secondaryAttributes = filterItemsInPreview(
+    attributes.secondary,
+    shouldShowDetails,
+  )
+  const textAttributes = filterItemsInPreview(attributes.text, shouldShowDetails)
+  const paragraphAttributes = filterItemsInPreview(
+    attributes.paragraph,
+    shouldShowDetails,
+  )
+  const imageAttributes = filterItemsInPreview(
+    attributes[AttributeType.Imageurl],
+    shouldShowDetails,
+  )
+  const linkAttributes = filterItemsInPreview(
+    attributes[AttributeType.Link],
+    shouldShowDetails,
+  )
+
+  const [searchValue, setSearchValue] = useState('')
+
+  const regex = new RegExp(searchValue, 'i')
+  const itemsfilterByTextSearch = !searchValue
+    ? items
+    : items.filter(
+        item =>
+          titleAttrs.some(attr => regex.test(item[camelCase(attr.title)] as string)) ||
+          tagsAttrs.some(attr => regex.test(item[camelCase(attr.title)] as string)) ||
+          textAttributes.some(attr =>
+            regex.test(item[camelCase(attr.title)] as string),
+          ) ||
+          paragraphAttributes.some(attr =>
+            regex.test(item[camelCase(attr.title)] as string),
+          ),
+      )
 
   return (
     <>
-      {orderBy(items, attribute, [sort])?.map(item => (
+      <Input
+        value={searchValue}
+        onChange={({ target }) => setSearchValue(target.value)}
+        className="mb-5"
+        placeholder="Search by name or tag"
+      />
+      {orderBy(itemsfilterByTextSearch, attribute, [sort])?.map((item, i) => (
         <ItemList
-          key={`${item[camelCase(titleAttrs[0].title)]}`}
-          title={titleAttrs?.map(attr => item[camelCase(attr.title)]) as string[]}
+          key={`${item[camelCase(titleAttrs[0]?.title)]}-${i}`}
+          title={titleAttrs.map(attr => item[camelCase(attr.title)]) as string[]}
           footer={
             shouldShowTags
-              ? tagsAttrs?.flatMap(attr =>
+              ? tagsAttrs.flatMap(attr =>
                   (item[camelCase(attr.title)] as string)
                     ?.split(',')
                     ?.map(tag => <Badge key={tag}>{tag}</Badge>),
@@ -157,38 +212,35 @@ export default function List({
           }
         >
           <PrimaryBlock item={item} attributes={attributes.primary} />
-          {shouldShowDetails && (
-            <>
-              {attributes.secondary?.map(attr => (
-                <OtherAttribute
-                  className="text-sm"
-                  key={attr.title}
-                  {...attr}
-                  value={getAttributeValue(item[camelCase(attr.title)])}
-                />
-              ))}
-              {attributes.text?.map(attr => (
-                <OtherAttribute
-                  className="text-sm"
-                  key={attr.title}
-                  {...attr}
-                  value={getAttributeValue(item[camelCase(attr.title)])}
-                />
-              ))}
-              {attributes.paragraph?.map(attr => (
-                <OtherAttribute
-                  className="text-sm"
-                  key={attr.title}
-                  {...attr}
-                  value={getAttributeValue(item[camelCase(attr.title)])}
-                  hideTitle
-                />
-              ))}
 
-              <ImageBlock attributes={attributes[AttributeType.Imageurl]} item={item} />
-              <LinkBlock attributes={attributes[AttributeType.Link]} item={item} />
-            </>
-          )}
+          {secondaryAttributes.map(attr => (
+            <OtherAttribute
+              className="text-sm"
+              key={attr.title}
+              {...attr}
+              value={getAttributeValue(item[camelCase(attr.title)])}
+            />
+          ))}
+          {textAttributes.map(attr => (
+            <OtherAttribute
+              className="text-sm"
+              key={attr.title}
+              {...attr}
+              value={getAttributeValue(item[camelCase(attr.title)])}
+            />
+          ))}
+          {paragraphAttributes.map(attr => (
+            <OtherAttribute
+              className="text-sm"
+              key={attr.title}
+              {...attr}
+              value={getAttributeValue(item[camelCase(attr.title)])}
+              hideTitle
+            />
+          ))}
+
+          <ImageBlock attributes={imageAttributes} item={item} />
+          <LinkBlock attributes={linkAttributes} item={item} />
         </ItemList>
       ))}
     </>
